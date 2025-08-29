@@ -51,57 +51,111 @@ function App(): JSX.Element {
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(42,102,255,0.08),transparent_50%)] pointer-events-none"></div>
       
-      {/* Header */}
-      <header className="w-full py-4 px-4 md:px-8 bg-white/90 backdrop-blur-xl border-b border-gray-100/50 sticky top-0 z-50 shadow-lg">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          {/* Clean PNG Logo */}
-          <div className="flex items-center space-x-3 group">
-            <div className="relative">
-              <img 
-                src={logoImage} 
-                alt="LabelSquor Logo" 
-                width="108" 
-                height="108"
-                className="transition-transform duration-300 group-hover:scale-105 rounded-lg shadow-sm"
-                style={{ backgroundColor: 'white' }}
-              />
+      {/* Mobile-Optimized Header */}
+      <header className="w-full py-3 md:py-4 px-4 md:px-8 bg-white/90 backdrop-blur-xl border-b border-gray-100/50 sticky top-0 z-50 shadow-lg">
+        <div className="max-w-7xl mx-auto">
+          {/* Mobile Layout */}
+          <div className="flex flex-col space-y-4 md:hidden">
+            {/* Logo Row */}
+            <div className="flex items-center justify-center">
+              <div className="flex items-center space-x-3 group">
+                <div className="relative">
+                  <img 
+                    src={logoImage} 
+                    alt="LabelSquor Logo" 
+                    width="64" 
+                    height="64"
+                    className="transition-transform duration-300 group-hover:scale-105 rounded-lg shadow-sm"
+                    style={{ backgroundColor: 'white' }}
+                  />
+                </div>
+                <div className="flex items-baseline">
+                  <span className="font-outfit font-bold text-xl text-gray-900 tracking-tight">Label</span>
+                  <span className="font-outfit font-bold text-xl text-blue-600">Squor</span>
+                </div>
+              </div>
             </div>
-            <div className="flex items-baseline">
-              <span className="font-outfit font-bold text-2xl text-gray-900 tracking-tight">Label</span>
-              <span className="font-outfit font-bold text-2xl text-blue-600">Squor</span>
+            
+            {/* Mode Toggle Row */}
+            <div className="flex justify-center">
+              <div className="flex items-center bg-white/80 backdrop-blur-md border border-gray-200/50 rounded-2xl p-1 shadow-lg">
+                <button
+                  onClick={() => setMode('consumer')}
+                  className={`flex items-center px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                    mode === 'consumer'
+                      ? 'bg-blue-600 text-white shadow-lg transform scale-105'
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                  }`}
+                >
+                  <FaHeart className="w-3 h-3 mr-2" />
+                  Consumers
+                </button>
+                <button
+                  onClick={() => setMode('retailer')}
+                  className={`flex items-center px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                    mode === 'retailer'
+                      ? 'bg-blue-600 text-white shadow-lg transform scale-105'
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                  }`}
+                >
+                  <FaChartBar className="w-3 h-3 mr-2" />
+                  Retailers
+                </button>
+              </div>
             </div>
           </div>
-          
-          {/* Enhanced Mode Toggle */}
-          <div className="flex items-center bg-white/80 backdrop-blur-md border border-gray-200/50 rounded-2xl p-1 shadow-lg">
-            <button
-              onClick={() => setMode('consumer')}
-              className={`flex items-center px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                mode === 'consumer'
-                  ? 'bg-blue-600 text-white shadow-lg transform scale-105'
-                  : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-              }`}
-            >
-              <FaHeart className="w-4 h-4 mr-2" />
-              Consumers
-            </button>
-            <button
-              onClick={() => setMode('retailer')}
-              className={`flex items-center px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                mode === 'retailer'
-                  ? 'bg-blue-600 text-white shadow-lg transform scale-105'
-                  : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-              }`}
-            >
-              <FaChartBar className="w-4 h-4 mr-2" />
-              Retailers
-            </button>
+
+          {/* Desktop Layout */}
+          <div className="hidden md:flex justify-between items-center">
+            {/* Desktop Logo */}
+            <div className="flex items-center space-x-4 group">
+              <div className="relative">
+                <img 
+                  src={logoImage} 
+                  alt="LabelSquor Logo" 
+                  width="80" 
+                  height="80"
+                  className="transition-transform duration-300 group-hover:scale-105 rounded-lg shadow-sm"
+                  style={{ backgroundColor: 'white' }}
+                />
+              </div>
+              <div className="flex items-baseline">
+                <span className="font-outfit font-bold text-2xl text-gray-900 tracking-tight">Label</span>
+                <span className="font-outfit font-bold text-2xl text-blue-600">Squor</span>
+              </div>
+            </div>
+            
+            {/* Desktop Mode Toggle */}
+            <div className="flex items-center bg-white/80 backdrop-blur-md border border-gray-200/50 rounded-2xl p-1 shadow-lg">
+              <button
+                onClick={() => setMode('consumer')}
+                className={`flex items-center px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                  mode === 'consumer'
+                    ? 'bg-blue-600 text-white shadow-lg transform scale-105'
+                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                }`}
+              >
+                <FaHeart className="w-4 h-4 mr-2" />
+                Consumers
+              </button>
+              <button
+                onClick={() => setMode('retailer')}
+                className={`flex items-center px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                  mode === 'retailer'
+                    ? 'bg-blue-600 text-white shadow-lg transform scale-105'
+                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                }`}
+              >
+                <FaChartBar className="w-4 h-4 mr-2" />
+                Retailers
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <main className="w-full py-16 md:py-24 px-4 md:px-8">
+      {/* Mobile-Optimized Hero Section */}
+      <main className="w-full py-8 sm:py-12 md:py-24 px-4 md:px-8">
         <div className="max-w-7xl mx-auto text-center">
           {/* Status Badge */}
           <div className="inline-flex items-center bg-white border border-gray-200 rounded-full px-6 py-3 shadow-sm mb-8">
@@ -111,8 +165,8 @@ function App(): JSX.Element {
             </span>
           </div>
           
-          {/* Main Headline */}
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
+          {/* Mobile-Optimized Headline */}
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-6 md:mb-8 tracking-tight leading-tight">
             <span className="text-blue-600">
               {content.headline.split(',')[0]},
             </span>
@@ -120,8 +174,8 @@ function App(): JSX.Element {
             <span className="text-gray-900">{content.headline.split(',')[1]}</span>
           </h1>
           
-          {/* Subheader */}
-          <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+          {/* Mobile-Optimized Subheader */}
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
             {content.subheader}
           </p>
           
