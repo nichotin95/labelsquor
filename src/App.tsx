@@ -15,6 +15,7 @@ import {
   FaUsers,
   FaBuilding
 } from 'react-icons/fa';
+import logoImage from '/logo_ls.png';
 
 function App(): JSX.Element {
   const [mode, setMode] = useState<'consumer' | 'retailer'>('consumer');
@@ -57,7 +58,7 @@ function App(): JSX.Element {
           <div className="flex items-center space-x-3 group">
             <div className="relative">
               <img 
-                src="/logo_ls.png" 
+                src={logoImage} 
                 alt="LabelSquor Logo" 
                 width="108" 
                 height="108"
