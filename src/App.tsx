@@ -51,57 +51,51 @@ function App(): JSX.Element {
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(42,102,255,0.08),transparent_50%)] pointer-events-none"></div>
       
-      {/* Mobile-Optimized Header */}
-      <header className="w-full py-3 md:py-4 px-4 md:px-8 bg-white/90 backdrop-blur-xl border-b border-gray-100/50 sticky top-0 z-50 shadow-lg">
+      {/* Clean Mobile Header */}
+      <header className="w-full py-4 px-4 md:px-8 bg-white/90 backdrop-blur-xl border-b border-gray-100/50 sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto">
-          {/* Mobile Layout */}
-          <div className="flex flex-col space-y-4 md:hidden">
-            {/* Logo Row */}
-            <div className="flex items-center justify-center">
-              <div className="flex items-center space-x-3 group">
-                <div className="relative">
-                  <img 
-                    src={logoImage} 
-                    alt="LabelSquor Logo" 
-                    width="64" 
-                    height="64"
-                    className="transition-transform duration-300 group-hover:scale-105 rounded-lg shadow-sm"
-                    style={{ backgroundColor: 'white' }}
-                  />
-                </div>
-                <div className="flex items-baseline">
-                  <span className="font-outfit font-bold text-xl text-gray-900 tracking-tight">Label</span>
-                  <span className="font-outfit font-bold text-xl text-blue-600">Squor</span>
-                </div>
+          {/* Mobile Layout - Single Row */}
+          <div className="flex items-center justify-between md:hidden">
+            {/* Mobile Logo - Left */}
+            <div className="flex items-center space-x-2 group">
+              <div className="relative">
+                <img 
+                  src={logoImage} 
+                  alt="LabelSquor Logo" 
+                  width="48" 
+                  height="48"
+                  className="transition-transform duration-300 group-hover:scale-105 rounded-lg shadow-sm"
+                  style={{ backgroundColor: 'white' }}
+                />
+              </div>
+              <div className="flex items-baseline">
+                <span className="font-outfit font-bold text-lg text-gray-900 tracking-tight">Label</span>
+                <span className="font-outfit font-bold text-lg text-blue-600">Squor</span>
               </div>
             </div>
             
-            {/* Mode Toggle Row */}
-            <div className="flex justify-center">
-              <div className="flex items-center bg-white/80 backdrop-blur-md border border-gray-200/50 rounded-2xl p-1 shadow-lg">
-                <button
-                  onClick={() => setMode('consumer')}
-                  className={`flex items-center px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                    mode === 'consumer'
-                      ? 'bg-blue-600 text-white shadow-lg transform scale-105'
-                      : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-                  }`}
-                >
-                  <FaHeart className="w-3 h-3 mr-2" />
-                  Consumers
-                </button>
-                <button
-                  onClick={() => setMode('retailer')}
-                  className={`flex items-center px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                    mode === 'retailer'
-                      ? 'bg-blue-600 text-white shadow-lg transform scale-105'
-                      : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-                  }`}
-                >
-                  <FaChartBar className="w-3 h-3 mr-2" />
-                  Retailers
-                </button>
-              </div>
+            {/* Mobile Mode Toggle - Right */}
+            <div className="flex items-center bg-white/80 backdrop-blur-md border border-gray-200/50 rounded-xl p-0.5 shadow-lg">
+              <button
+                onClick={() => setMode('consumer')}
+                className={`flex items-center px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-300 ${
+                  mode === 'consumer'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-600'
+                }`}
+              >
+                <FaHeart className="w-3 h-3" />
+              </button>
+              <button
+                onClick={() => setMode('retailer')}
+                className={`flex items-center px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-300 ${
+                  mode === 'retailer'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-600'
+                }`}
+              >
+                <FaChartBar className="w-3 h-3" />
+              </button>
             </div>
           </div>
 
@@ -179,19 +173,19 @@ function App(): JSX.Element {
             {content.subheader}
           </p>
           
-          {/* Feature Cards with ECG Elements */}
-          <div className="mb-12 max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Mobile-Optimized Feature Cards */}
+          <div className="mb-8 md:mb-12 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {content.features.map((feature, index) => (
-                <div key={index} className="group bg-white border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300 hover:-translate-y-2">
-                  <div className="flex items-center justify-center mb-4">
+                <div key={index} className="group bg-white border border-gray-200 p-4 md:p-6 rounded-xl shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300 hover:-translate-y-2">
+                  <div className="flex items-center justify-center mb-3 md:mb-4">
                     <div className="ecg-container">
                       <div className="ecg-dot"></div>
-                      <svg width="40" height="16" viewBox="0 0 40 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg width="32" height="12" viewBox="0 0 32 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="md:w-10 md:h-4">
                         <path 
-                          d="M2 8 L8 8 L12 4 L16 12 L20 6 L24 10 L28 8 L32 8 L36 8 L38 8" 
+                          d="M2 6 L6 6 L8 3 L10 9 L12 4 L16 8 L20 6 L24 6 L28 6 L30 6" 
                           stroke="#2563eb" 
-                          strokeWidth="2" 
+                          strokeWidth="1.5" 
                           fill="none"
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -200,7 +194,7 @@ function App(): JSX.Element {
                       </svg>
                     </div>
                   </div>
-                  <p className="font-medium text-gray-800 text-center leading-relaxed">{feature}</p>
+                  <p className="font-medium text-gray-800 text-center leading-relaxed text-sm md:text-base">{feature}</p>
                 </div>
               ))}
             </div>
@@ -241,7 +235,7 @@ function App(): JSX.Element {
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 {[
                   { 
                     name: "Health", 
@@ -272,7 +266,7 @@ function App(): JSX.Element {
                     color: "text-purple-600" 
                   }
                 ].map((squor, index) => (
-                  <div key={index} className="group relative bg-white border border-gray-200 rounded-3xl p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 hover:rotate-1">
+                  <div key={index} className="group relative bg-white border border-gray-200 rounded-2xl md:rounded-3xl p-6 md:p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 hover:rotate-1">
                     <div className="absolute top-4 right-4">
                       <div className="relative w-6 h-2">
                         <div className="ecg-dot w-2 h-2"></div>
