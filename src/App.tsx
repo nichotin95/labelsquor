@@ -15,7 +15,7 @@ import {
   FaUsers,
   FaBuilding
 } from 'react-icons/fa';
-import logoImage from '/logo_ls.png';
+import logoImage from '../public/logo_ls.png';
 
 function App(): JSX.Element {
   const [mode, setMode] = useState<'consumer' | 'retailer'>('consumer');
