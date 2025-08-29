@@ -173,19 +173,32 @@ function App(): JSX.Element {
             {content.subheader}
           </p>
           
-          {/* Mobile-Optimized Feature Cards */}
-          <div className="mb-8 md:mb-12 max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          {/* Compact Mobile Feature List */}
+          <div className="mb-8 md:mb-12 max-w-4xl mx-auto">
+            {/* Mobile: Simple List */}
+            <div className="md:hidden space-y-3">
               {content.features.map((feature, index) => (
-                <div key={index} className="group bg-white border border-gray-200 p-4 md:p-6 rounded-xl shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300 hover:-translate-y-2">
-                  <div className="flex items-center justify-center mb-3 md:mb-4">
+                <div key={index} className="group flex items-center bg-white border border-gray-200 p-4 rounded-lg shadow-sm">
+                  <div className="mr-4 flex-shrink-0">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                  </div>
+                  <p className="font-medium text-gray-800 text-sm leading-relaxed">{feature}</p>
+                </div>
+              ))}
+            </div>
+            
+            {/* Desktop: Card Grid */}
+            <div className="hidden md:grid grid-cols-3 gap-6">
+              {content.features.map((feature, index) => (
+                <div key={index} className="group bg-white border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300 hover:-translate-y-2">
+                  <div className="flex items-center justify-center mb-4">
                     <div className="ecg-container">
                       <div className="ecg-dot"></div>
-                      <svg width="32" height="12" viewBox="0 0 32 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="md:w-10 md:h-4">
+                      <svg width="40" height="16" viewBox="0 0 40 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path 
-                          d="M2 6 L6 6 L8 3 L10 9 L12 4 L16 8 L20 6 L24 6 L28 6 L30 6" 
+                          d="M2 8 L8 8 L12 4 L16 12 L20 6 L24 10 L28 8 L32 8 L36 8 L38 8" 
                           stroke="#2563eb" 
-                          strokeWidth="1.5" 
+                          strokeWidth="2" 
                           fill="none"
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -194,7 +207,7 @@ function App(): JSX.Element {
                       </svg>
                     </div>
                   </div>
-                  <p className="font-medium text-gray-800 text-center leading-relaxed text-sm md:text-base">{feature}</p>
+                  <p className="font-medium text-gray-800 text-center leading-relaxed">{feature}</p>
                 </div>
               ))}
             </div>
@@ -235,7 +248,7 @@ function App(): JSX.Element {
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                 {[
                   { 
                     name: "Health", 
@@ -266,7 +279,7 @@ function App(): JSX.Element {
                     color: "text-purple-600" 
                   }
                 ].map((squor, index) => (
-                  <div key={index} className="group relative bg-white border border-gray-200 rounded-2xl md:rounded-3xl p-6 md:p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 hover:rotate-1">
+                  <div key={index} className="group relative bg-white border border-gray-200 rounded-xl md:rounded-3xl p-4 md:p-8 text-center shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 md:hover:-translate-y-4 hover:rotate-1">
                     <div className="absolute top-4 right-4">
                       <div className="relative w-6 h-2">
                         <div className="ecg-dot w-2 h-2"></div>
@@ -284,11 +297,11 @@ function App(): JSX.Element {
                       </div>
                     </div>
                     <div className="relative">
-                      <div className="w-20 h-20 bg-gray-50 border-2 border-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:border-blue-300 transition-all duration-300">
-                        {squor.icon}
+                      <div className="w-12 h-12 md:w-20 md:h-20 bg-gray-50 border-2 border-gray-200 rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-6 group-hover:scale-110 group-hover:border-blue-300 transition-all duration-300">
+                        <div className="scale-75 md:scale-100">{squor.icon}</div>
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-6">{squor.name}</h3>
-                      <p className="text-gray-600 leading-relaxed">{squor.desc}</p>
+                      <h3 className="text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-6">{squor.name}</h3>
+                      <p className="text-gray-600 leading-relaxed text-xs md:text-base">{squor.desc}</p>
                     </div>
                     <div className="absolute inset-x-0 bottom-0 h-1 bg-gray-200 rounded-b-3xl group-hover:bg-blue-200 transition-colors"></div>
                   </div>
@@ -316,7 +329,7 @@ function App(): JSX.Element {
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 relative">
                 {[
                   { 
                     step: "1", 
@@ -338,16 +351,16 @@ function App(): JSX.Element {
                   }
                 ].map((step, index) => (
                   <div key={index} className="group">
-                    <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 hover:shadow-xl hover:border-blue-200 transition-all duration-300 hover:-translate-y-2 h-full">
+                    <div className="bg-white rounded-xl md:rounded-2xl p-6 md:p-8 shadow-lg border border-gray-200 hover:shadow-xl hover:border-blue-200 transition-all duration-300 hover:-translate-y-2 h-full">
                       <div className="text-center">
-                        <div className="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 group-hover:scale-110 transition-all duration-300">
+                        <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-600 text-white rounded-xl md:rounded-2xl flex items-center justify-center text-lg md:text-2xl font-bold mx-auto mb-4 md:mb-6 group-hover:scale-110 transition-all duration-300">
                           {step.step}
                         </div>
-                        <div className="mb-6 flex justify-center group-hover:scale-110 transition-transform duration-300">
-                          {step.icon}
+                        <div className="mb-4 md:mb-6 flex justify-center group-hover:scale-110 transition-transform duration-300">
+                          <div className="scale-75 md:scale-100">{step.icon}</div>
                         </div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                        <p className="text-gray-600 leading-relaxed">{step.desc}</p>
+                        <h3 className="text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-4">{step.title}</h3>
+                        <p className="text-gray-600 leading-relaxed text-sm md:text-base">{step.desc}</p>
                       </div>
                     </div>
                   </div>
