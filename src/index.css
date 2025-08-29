@@ -1,3 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .ecg-container {
+    position: relative;
+    width: 40px;
+    height: 16px;
+  }
+  
+  .ecg-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: #2563eb;
+    border-radius: 50%;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+  
+  .ecg-line {
+    opacity: 0;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: opacity 0.3s ease;
+  }
+  
+  .group:hover .ecg-dot {
+    opacity: 0;
+  }
+  
+  .group:hover .ecg-line {
+    opacity: 0.8;
+    animation: ecg-draw 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes ecg-pulse {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0.4;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0.4;
+  }
+}
+
+@keyframes ecg-draw {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0.6;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0.6;
+  }
+}

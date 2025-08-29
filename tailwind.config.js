@@ -19,9 +19,6 @@ module.exports = {
         'heartbeat-red': '#EF4444',
         'gradient-purple': '#9333EA',
       },
-      backgroundImage: {
-        'blue-purple-gradient': 'linear-gradient(135deg, #2A66FF 0%, #9333EA 100%)',
-      },
     },
   },
   plugins: [],
