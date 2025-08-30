@@ -8,7 +8,7 @@
     "clean": "rm -rf dist node_modules/.vite .vite assets && echo '✅ Cleaned!'",
     "clean:dev": "sh cleanup-dev.sh",
     "fresh": "npm run clean:dev && npm run dev",
-    "build": "vite build",
+    "build": "vite build && cp CNAME dist/ 2>/dev/null || true",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
