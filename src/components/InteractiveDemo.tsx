@@ -104,7 +104,7 @@ const InteractiveDemo: React.FC = () => {
               {/* Product Image */}
               <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
                 <ImagePlaceholder 
-                  src={currentProduct.image.startsWith('/images/') ? undefined : currentProduct.image}
+                  src={currentProduct.image}
                   alt={currentProduct.name}
                   width={300}
                   height={400}

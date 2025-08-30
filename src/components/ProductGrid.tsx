@@ -56,7 +56,7 @@ const ProductGrid: React.FC = () => {
               {/* Product Image */}
               <div className="h-48 bg-gradient-to-br from-gray-50 to-gray-100 p-4 relative">
                 <ImagePlaceholder 
-                  src={product.image.startsWith('/images/') ? undefined : product.image}
+                  src={product.image}
                   alt={product.name}
                   width={160}
                   height={180}

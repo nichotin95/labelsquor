@@ -75,7 +75,7 @@
       "Very low sugar/sodium"
     ],
     "flags": ["Paper packaging", "Organic certified", "FSSAI # present"],
-    "image": "/images/aashirvaad_atta.jpg"
+    "image": "/images/aashirvaad_atta.png"
   },
   {
     "name": "Plain Curd (Dahi)",
@@ -94,7 +94,7 @@
       "Fermented dairy protein"
     ],
     "flags": ["Plastic tub", "Batch/EXP legible", "FSSAI # present"],
-    "image": "/images/amul_curd.jpg"
+    "image": "/images/amul_curd.png"
   },
   {
     "name": "Paneer",
@@ -113,7 +113,7 @@
       "Very low sugar/sodium"
     ],
     "flags": ["Plastic tray", "FSSAI license", "GTIN verified"],
-    "image": "/images/motherdairy_paneer.jpg"
+    "image": "/images/motherdairy_paneer.png"
   },
   {
     "name": "Glucose Biscuits",
@@ -133,7 +133,7 @@
       "Low fiber"
     ],
     "flags": ["Plastic packaging", "Barcode verified", "FSSAI license"],
-    "image": "/images/parle_g.jpg"
+    "image": "/images/parle_g.png"
   },
   {
     "name": "Whole-Wheat Bread",
@@ -152,6 +152,6 @@
       "Some added sugar"
     ],
     "flags": ["Plastic pack", "Batch/EXP present", "GTIN valid"],
-    "image": "/images/britannia_bread.jpg"
+    "image": "/images/britannia_bread.png"
   }
 ]
