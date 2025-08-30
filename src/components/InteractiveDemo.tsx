@@ -1,59 +1,49 @@
 import React, { useState } from 'react';
-import { FaCamera, FaArrowRight, FaCheckCircle, FaExclamationTriangle, FaShieldAlt } from 'react-icons/fa';
+import { FaArrowRight, FaCheckCircle, FaExclamationTriangle, FaShieldAlt, FaLeaf, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import ImagePlaceholder from './ImagePlaceholder';
+import productsData from '../data/products.json';
 
 const InteractiveDemo: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState(0);
   
-  const products = [
-    {
-      id: 0,
-      name: 'Organic Protein Bar',
-      category: 'Food & Nutrition',
-      imageUrl: '/api/placeholder/300/400', // Placeholder for actual product image
-      healthScore: 74,
-      safetyScore: 92,
-      sustainScore: 81,
-      verified: true,
-      highlights: [
-        { type: 'positive', icon: <FaCheckCircle />, text: 'High protein (20g)', detail: 'Exceeds daily requirements' },
-        { type: 'warning', icon: <FaExclamationTriangle />, text: 'Moderate sodium', detail: '280mg per serving' },
-        { type: 'info', icon: <FaShieldAlt />, text: 'FOPL Compliant', detail: 'Meets all labeling requirements' }
-      ]
-    },
-    {
-      id: 1,
-      name: 'Natural Face Cream',
-      category: 'Personal Care',
-      imageUrl: '/api/placeholder/300/400', // Placeholder for actual product image
-      healthScore: null,
-      safetyScore: 88,
-      sustainScore: 76,
-      verified: true,
-      highlights: [
-        { type: 'positive', icon: <FaCheckCircle />, text: 'No harmful chemicals', detail: 'Free from parabens & sulfates' },
-        { type: 'positive', icon: <FaCheckCircle />, text: 'Cruelty-free', detail: 'Certified by Leaping Bunny' },
-        { type: 'info', icon: <FaShieldAlt />, text: 'EU Compliant', detail: 'Meets cosmetics regulation' }
-      ]
-    },
-    {
-      id: 2,
-      name: 'Kids Fruit Juice',
-      category: 'Beverages',
-      imageUrl: '/api/placeholder/300/400', // Placeholder for actual product image
-      healthScore: 62,
-      safetyScore: 95,
-      sustainScore: 70,
-      verified: true,
-      highlights: [
-        { type: 'positive', icon: <FaCheckCircle />, text: 'No artificial colors', detail: '100% natural ingredients' },
-        { type: 'warning', icon: <FaExclamationTriangle />, text: 'High sugar content', detail: '12g per 100ml' },
-        { type: 'info', icon: <FaShieldAlt />, text: 'BIS Certified', detail: 'Indian standards approved' }
-      ]
-    }
-  ];
+  // Get score color based on value
+  const getScoreColor = (score: number) => {
+    if (score >= 80) return 'text-success-green';
+    if (score >= 60) return 'text-warning-amber';
+    if (score >= 40) return 'text-orange-500';
+    return 'text-error-red';
+  };
 
-  const currentProduct = products[selectedProduct];
+  const getScoreBgColor = (score: number) => {
+    if (score >= 80) return 'bg-success-green/10 border-success-green/30';
+    if (score >= 60) return 'bg-warning-amber/10 border-warning-amber/30';
+    if (score >= 40) return 'bg-orange-500/10 border-orange-500/30';
+    return 'bg-error-red/10 border-error-red/30';
+  };
+
+  // Get flag type for styling
+  const getFlagStyle = (flag: string) => {
+    if (flag.includes('FSSAI') || flag.includes('GTIN') || flag.includes('verified')) {
+      return 'bg-trust-blue/10 text-trust-blue border-trust-blue/30';
+    }
+    if (flag.includes('Organic') || flag.includes('Paper')) {
+      return 'bg-success-green/10 text-success-green border-success-green/30';
+    }
+    if (flag.includes('Plastic') || flag.includes('Palm oil')) {
+      return 'bg-warning-amber/10 text-warning-amber border-warning-amber/30';
+    }
+    return 'bg-gray-100 text-cool-gray border-gray-300';
+  };
+
+  const currentProduct = productsData[selectedProduct];
+
+  const navigateProduct = (direction: 'prev' | 'next') => {
+    if (direction === 'prev') {
+      setSelectedProduct((prev) => (prev === 0 ? productsData.length - 1 : prev - 1));
+    } else {
+      setSelectedProduct((prev) => (prev === productsData.length - 1 ? 0 : prev + 1));
+    }
+  };
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white to-light-gray/30">
@@ -61,170 +51,191 @@ const InteractiveDemo: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
           <div className="inline-flex items-center bg-trust-blue/10 rounded-full px-4 py-2 mb-4">
-            <span className="font-dm-sans text-sm font-semibold text-trust-blue">Interactive Demo</span>
+            <span className="font-dm-sans text-sm font-semibold text-trust-blue">Live Demo</span>
           </div>
           <h2 className="font-outfit font-bold text-3xl sm:text-4xl lg:text-5xl text-coal-black mb-4">
-            Try LabelSquor Live
+            Experience LabelSquor
           </h2>
           <p className="font-dm-sans text-lg text-cool-gray max-w-3xl mx-auto">
-            Click on any product below to see instant health, safety, and sustainability scores
+            Real products from Indian markets with actual Health, Safety, Sustainability & Verification scores
           </p>
         </div>
 
-        {/* Product Selector */}
-        <div className="grid grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
-          {products.map((product, index) => (
-            <button
-              key={product.id}
-              onClick={() => setSelectedProduct(index)}
-              className={`relative rounded-xl p-4 transition-all duration-300 ${
-                selectedProduct === index
-                  ? 'bg-trust-blue text-white shadow-xl scale-105'
-                  : 'bg-white text-coal-black shadow-md hover:shadow-lg hover:scale-102'
-              }`}
+        {/* Product Carousel Selector */}
+        <div className="mb-12">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <button 
+              onClick={() => navigateProduct('prev')}
+              className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-all"
             >
-              {/* Product Image Placeholder */}
-              <div className="w-full h-24 rounded-lg mb-2 overflow-hidden">
-                <ImagePlaceholder 
-                  src={product.imageUrl !== '/api/placeholder/300/400' ? product.imageUrl : undefined}
-                  alt={product.name}
-                  width={100}
-                  height={96}
-                  placeholderText=""
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className={`font-outfit font-semibold text-sm ${
-                selectedProduct === index ? 'text-white' : 'text-coal-black'
-              }`}>
-                {product.name}
-              </p>
-              <p className={`font-dm-sans text-xs mt-1 ${
-                selectedProduct === index ? 'text-white/80' : 'text-cool-gray'
-              }`}>
-                {product.category}
-              </p>
-              {selectedProduct === index && (
-                <div className="absolute -top-2 -right-2 bg-success-green text-white rounded-full p-1">
-                  <FaCheckCircle className="text-xs" />
-                </div>
-              )}
+              <FaChevronLeft className="text-coal-black" />
             </button>
-          ))}
+            
+            <div className="flex gap-2 overflow-x-auto max-w-2xl">
+              {productsData.map((product, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedProduct(index)}
+                  className={`px-4 py-2 rounded-full transition-all font-dm-sans text-sm whitespace-nowrap ${
+                    selectedProduct === index
+                      ? 'bg-trust-blue text-white shadow-lg'
+                      : 'bg-white text-coal-black shadow-md hover:shadow-lg'
+                  }`}
+                >
+                  {product.name}
+                </button>
+              ))}
+            </div>
+            
+            <button 
+              onClick={() => navigateProduct('next')}
+              className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-all"
+            >
+              <FaChevronRight className="text-coal-black" />
+            </button>
+          </div>
         </div>
 
-        {/* Interactive Result Display */}
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+        {/* Main Product Card */}
+        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2">
-            {/* Left: Product Display */}
-            <div className="bg-gradient-to-br from-light-gray to-white p-8 lg:p-12">
+            {/* Left: Product Image & Info */}
+            <div className="bg-gradient-to-br from-light-gray/50 to-white p-8 lg:p-12">
+              {/* Product Image */}
+              <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
+                <ImagePlaceholder 
+                  src={currentProduct.image.startsWith('/images/') ? undefined : currentProduct.image}
+                  alt={currentProduct.name}
+                  width={300}
+                  height={400}
+                  placeholderText={currentProduct.name}
+                  className="mx-auto"
+                  rounded="xl"
+                />
+              </div>
+              
+              {/* Product Details */}
               <div className="text-center">
-                {/* Product Image Placeholder - Ready for real image */}
-                <div className="bg-white rounded-2xl shadow-lg p-4 inline-block mb-6">
-                  <ImagePlaceholder 
-                    src={currentProduct.imageUrl !== '/api/placeholder/300/400' ? currentProduct.imageUrl : undefined}
-                    alt={currentProduct.name}
-                    width={192}
-                    height={256}
-                    placeholderText={currentProduct.name}
-                    className="shadow-inner"
-                  />
-                </div>
-                
                 <h3 className="font-outfit font-bold text-2xl text-coal-black mb-2">
                   {currentProduct.name}
                 </h3>
-                <p className="font-dm-sans text-cool-gray mb-4">
-                  {currentProduct.category}
-                </p>
+                <div className="flex justify-center gap-4 text-sm font-dm-sans text-cool-gray mb-4">
+                  <span>{currentProduct.category}</span>
+                  <span>•</span>
+                  <span>{currentProduct.pack_size}</span>
+                </div>
                 
-                {/* Scan Animation */}
-                <button className="bg-trust-blue text-white px-6 py-3 rounded-full font-outfit font-semibold text-sm hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl inline-flex items-center group">
-                  <FaCamera className="mr-2" />
-                  Scan This Product
-                  <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </button>
+                {/* Flags */}
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {currentProduct.flags.map((flag, index) => (
+                    <span 
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-xs font-inter border ${getFlagStyle(flag)}`}
+                    >
+                      {flag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Right: Scores and Analysis */}
+            {/* Right: Scores & Analysis */}
             <div className="p-8 lg:p-12">
-              {/* Score Cards */}
-              <div className="grid grid-cols-3 gap-4 mb-8">
-                <div className="text-center">
-                  <div className="bg-light-gray rounded-xl p-4">
-                    <p className="font-dm-sans text-xs text-cool-gray mb-1">Health</p>
-                    <p className="font-space-grotesk font-bold text-2xl text-trust-blue">
-                      {currentProduct.healthScore || 'N/A'}
-                    </p>
+              {/* Scores Grid */}
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {/* Health Score */}
+                <div className={`rounded-xl p-4 border ${getScoreBgColor(currentProduct.scores.health)}`}>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-dm-sans text-xs text-cool-gray">Health</span>
+                    <FaCheckCircle className={`text-xs ${getScoreColor(currentProduct.scores.health)}`} />
+                  </div>
+                  <div className={`font-space-grotesk font-bold text-3xl ${getScoreColor(currentProduct.scores.health)}`}>
+                    {currentProduct.scores.health}
                   </div>
                 </div>
-                <div className="text-center">
-                  <div className="bg-light-gray rounded-xl p-4">
-                    <p className="font-dm-sans text-xs text-cool-gray mb-1">Safety</p>
-                    <p className="font-space-grotesk font-bold text-2xl text-success-green">
-                      {currentProduct.safetyScore}
-                    </p>
+
+                {/* Safety Score */}
+                <div className={`rounded-xl p-4 border ${getScoreBgColor(currentProduct.scores.safety)}`}>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-dm-sans text-xs text-cool-gray">Safety</span>
+                    <FaShieldAlt className={`text-xs ${getScoreColor(currentProduct.scores.safety)}`} />
+                  </div>
+                  <div className={`font-space-grotesk font-bold text-3xl ${getScoreColor(currentProduct.scores.safety)}`}>
+                    {currentProduct.scores.safety}
                   </div>
                 </div>
-                <div className="text-center">
-                  <div className="bg-light-gray rounded-xl p-4">
-                    <p className="font-dm-sans text-xs text-cool-gray mb-1">Sustain</p>
-                    <p className="font-space-grotesk font-bold text-2xl text-warning-amber">
-                      {currentProduct.sustainScore}
-                    </p>
+
+                {/* Sustainability Score */}
+                <div className={`rounded-xl p-4 border ${getScoreBgColor(currentProduct.scores.sustainability)}`}>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-dm-sans text-xs text-cool-gray">Sustainability</span>
+                    <FaLeaf className={`text-xs ${getScoreColor(currentProduct.scores.sustainability)}`} />
+                  </div>
+                  <div className={`font-space-grotesk font-bold text-3xl ${getScoreColor(currentProduct.scores.sustainability)}`}>
+                    {currentProduct.scores.sustainability}
+                  </div>
+                </div>
+
+                {/* Verification Score */}
+                <div className={`rounded-xl p-4 border ${getScoreBgColor(currentProduct.scores.verification)}`}>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-dm-sans text-xs text-cool-gray">Verification</span>
+                    <FaCheckCircle className={`text-xs ${getScoreColor(currentProduct.scores.verification)}`} />
+                  </div>
+                  <div className={`font-space-grotesk font-bold text-3xl ${getScoreColor(currentProduct.scores.verification)}`}>
+                    {currentProduct.scores.verification}
                   </div>
                 </div>
               </div>
 
-              {/* Why Card - Interactive */}
-              <div className="bg-gradient-to-br from-light-gray to-gray-50 rounded-2xl p-6">
-                <h4 className="font-outfit font-bold text-lg text-coal-black mb-4 flex items-center">
+              {/* Why Card */}
+              <div className="bg-gradient-to-br from-light-gray to-gray-50 rounded-2xl p-6 mb-6">
+                <h4 className="font-outfit font-bold text-lg text-coal-black mb-4">
                   Why these scores?
-                  {currentProduct.verified && (
-                    <span className="ml-2 bg-success-green/10 text-success-green text-xs px-2 py-1 rounded-full font-dm-sans">
-                      Verified
-                    </span>
-                  )}
                 </h4>
                 
-                <div className="space-y-3">
-                  {currentProduct.highlights.map((highlight, index) => (
-                    <div key={index} className="flex items-start group hover:bg-white rounded-lg p-2 transition-all cursor-pointer">
-                      <div className={`mt-0.5 mr-3 ${
-                        highlight.type === 'positive' ? 'text-success-green' :
-                        highlight.type === 'warning' ? 'text-warning-amber' :
-                        'text-trust-blue'
-                      }`}>
-                        {highlight.icon}
-                      </div>
-                      <div className="flex-1">
-                        <p className="font-dm-sans font-semibold text-sm text-coal-black">
-                          {highlight.text}
-                        </p>
-                        <p className="font-inter text-xs text-cool-gray mt-0.5">
-                          {highlight.detail}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Action Button */}
-                <button className="mt-4 w-full bg-white border border-trust-blue text-trust-blue font-outfit font-semibold py-2 rounded-lg hover:bg-trust-blue hover:text-white transition-all duration-300 text-sm">
-                  View Full Report
-                </button>
+                <ul className="space-y-3">
+                  {currentProduct.why_card.map((reason, index) => {
+                    // Determine icon based on content
+                    const isPositive = reason.includes('Good') || reason.includes('High fiber') || 
+                                      reason.includes('Good protein') || reason.includes('Added fiber');
+                    const isNegative = reason.includes('High sodium') || reason.includes('High saturated') || 
+                                      reason.includes('High added sugar') || reason.includes('Energy dense') ||
+                                      reason.includes('High free sugar') || reason.includes('Refined carbs');
+                    
+                    return (
+                      <li key={index} className="flex items-start">
+                        <span className={`mt-1 mr-3 text-sm ${
+                          isPositive ? 'text-success-green' : 
+                          isNegative ? 'text-error-red' : 
+                          'text-warning-amber'
+                        }`}>
+                          {isPositive ? '✓' : isNegative ? '✗' : '•'}
+                        </span>
+                        <span className="font-inter text-sm text-coal-black">
+                          {reason}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
+
+              {/* CTA Button */}
+              <button className="w-full bg-trust-blue text-white font-outfit font-semibold py-4 rounded-xl hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center group">
+                Experience Squor
+                <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
         </div>
 
-        {/* CTA */}
+        {/* Bottom CTA */}
         <div className="text-center mt-12">
           <p className="font-dm-sans text-cool-gray mb-4">
-            Ready to scan your own products?
+            Want to see your products analyzed?
           </p>
-          <button className="bg-trust-blue text-white font-outfit font-semibold px-8 py-3 rounded-full hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl inline-flex items-center group">
+          <button className="bg-white border-2 border-trust-blue text-trust-blue font-outfit font-semibold px-8 py-3 rounded-full hover:bg-trust-blue hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl inline-flex items-center group">
             Get Early Access
             <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
           </button>
