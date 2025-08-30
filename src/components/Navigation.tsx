@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaHeart, FaChartBar, FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import Logo from './Logo';
 
 interface NavigationProps {
@@ -10,6 +10,13 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const navLinks = [
+    { name: 'How It Works', href: '#how-it-works' },
+    { name: 'Consumers', href: '#consumers', onClick: () => onModeChange('consumer') },
+    { name: 'Retailers', href: '#retailers', onClick: () => onModeChange('retailer') },
+    { name: 'About', href: '#about' },
+  ];
+
   return (
     <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,29 +24,24 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
           {/* Logo */}
           <Logo variant="auto" />
 
-          {/* Desktop Mode Toggle */}
-          <div className="hidden md:flex items-center bg-gray-50 border border-gray-200 rounded-full p-1">
-            <button
-              onClick={() => onModeChange('consumer')}
-              className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                mode === 'consumer'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              <FaHeart className="w-4 h-4 mr-2" />
-              <span>For Consumers</span>
-            </button>
-            <button
-              onClick={() => onModeChange('retailer')}
-              className={`flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                mode === 'retailer'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              <FaChartBar className="w-4 h-4 mr-2" />
-              <span>For Retailers</span>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={link.onClick}
+                className="font-dm-sans text-cool-gray hover:text-coal-black transition-colors text-sm font-medium"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:block">
+            <button className="bg-trust-blue text-white px-6 py-3 rounded-full font-outfit font-semibold text-sm hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
+              Get Early Access
             </button>
           </div>
 
@@ -60,40 +62,22 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-100 animate-slideDown">
-            <div className="space-y-2">
-              <button
-                onClick={() => {
-                  onModeChange('consumer');
-                  setIsMobileMenuOpen(false);
-                }}
-                className={`w-full flex items-center px-4 py-3 rounded-lg text-left transition-all ${
-                  mode === 'consumer'
-                    ? 'bg-blue-50 text-blue-600 font-semibold'
-                    : 'text-gray-600 hover:bg-gray-50'
-                }`}
-              >
-                <FaHeart className="w-5 h-5 mr-3" />
-                <div>
-                  <div className="font-medium">For Consumers</div>
-                  <div className="text-xs opacity-75">Trust, explained</div>
-                </div>
-              </button>
-              <button
-                onClick={() => {
-                  onModeChange('retailer');
-                  setIsMobileMenuOpen(false);
-                }}
-                className={`w-full flex items-center px-4 py-3 rounded-lg text-left transition-all ${
-                  mode === 'retailer'
-                    ? 'bg-blue-50 text-blue-600 font-semibold'
-                    : 'text-gray-600 hover:bg-gray-50'
-                }`}
-              >
-                <FaChartBar className="w-5 h-5 mr-3" />
-                <div>
-                  <div className="font-medium">For Retailers</div>
-                  <div className="text-xs opacity-75">Compliance, simplified</div>
-                </div>
+            <div className="flex flex-col space-y-3">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => {
+                    link.onClick?.();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="px-4 py-2 rounded-lg text-base font-dm-sans text-coal-black hover:bg-gray-50"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <button className="bg-trust-blue text-white px-6 py-3 rounded-full font-outfit font-semibold text-sm hover:bg-blue-700 transition-colors mx-4">
+                Get Early Access
               </button>
             </div>
           </div>
