@@ -10,11 +10,47 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const handleNavClick = (href: string, newMode?: 'consumer' | 'retailer') => {
+    if (newMode) {
+      onModeChange(newMode);
+      // Small delay to allow mode change before scrolling
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        element?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const navLinks = [
-    { name: 'How It Works', href: '#how-it-works' },
-    { name: 'Consumers', href: '#consumers', onClick: () => onModeChange('consumer') },
-    { name: 'Retailers', href: '#retailers', onClick: () => onModeChange('retailer') },
-    { name: 'About', href: '#about' },
+    { 
+      name: 'How It Works', 
+      href: '#how-it-works',
+      onClick: () => handleNavClick('#how-it-works')
+    },
+    { 
+      name: 'For Consumers', 
+      href: '#consumers',
+      onClick: () => {
+        onModeChange('consumer');
+        setTimeout(() => handleNavClick('#consumers'), 100);
+      }
+    },
+    { 
+      name: 'For Retailers', 
+      href: '#retailers',
+      onClick: () => {
+        onModeChange('retailer');
+        setTimeout(() => handleNavClick('#retailers'), 100);
+      }
+    },
+    { 
+      name: 'About', 
+      href: '#about',
+      onClick: () => handleNavClick('#about')
+    },
   ];
 
   return (
@@ -27,19 +63,32 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
                 onClick={link.onClick}
-                className="font-dm-sans text-cool-gray hover:text-coal-black transition-colors text-sm font-medium"
+                className={`font-dm-sans text-cool-gray hover:text-coal-black transition-colors text-sm font-medium ${
+                  (link.name === 'For Consumers' && mode === 'consumer') ||
+                  (link.name === 'For Retailers' && mode === 'retailer')
+                    ? 'text-trust-blue font-semibold'
+                    : ''
+                }`}
               >
                 {link.name}
-              </a>
+              </button>
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
+          {/* Mode Indicator Badge - Desktop */}
+          <div className="hidden md:flex items-center gap-4">
+            <div className="bg-light-gray px-3 py-1.5 rounded-full">
+              <span className="font-dm-sans text-xs font-medium text-cool-gray">
+                Viewing: <span className="text-trust-blue font-semibold">
+                  {mode === 'consumer' ? 'Consumer' : 'Retailer'} Mode
+                </span>
+              </span>
+            </div>
+            
+            {/* Desktop CTA */}
             <button className="bg-trust-blue text-white px-6 py-3 rounded-full font-outfit font-semibold text-sm hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
               Get Early Access
             </button>
@@ -62,19 +111,32 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-100 animate-slideDown">
+            {/* Mode Indicator - Mobile */}
+            <div className="mx-4 mb-3 bg-light-gray px-3 py-2 rounded-lg">
+              <span className="font-dm-sans text-xs font-medium text-cool-gray">
+                Viewing: <span className="text-trust-blue font-semibold">
+                  {mode === 'consumer' ? 'Consumer' : 'Retailer'} Mode
+                </span>
+              </span>
+            </div>
+            
             <div className="flex flex-col space-y-3">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
                   onClick={() => {
-                    link.onClick?.();
+                    link.onClick();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="px-4 py-2 rounded-lg text-base font-dm-sans text-coal-black hover:bg-gray-50"
+                  className={`px-4 py-2 rounded-lg text-base font-dm-sans text-coal-black hover:bg-gray-50 text-left ${
+                    (link.name === 'For Consumers' && mode === 'consumer') ||
+                    (link.name === 'For Retailers' && mode === 'retailer')
+                      ? 'bg-trust-blue/10 text-trust-blue font-semibold'
+                      : ''
+                  }`}
                 >
                   {link.name}
-                </a>
+                </button>
               ))}
               <button className="bg-trust-blue text-white px-6 py-3 rounded-full font-outfit font-semibold text-sm hover:bg-blue-700 transition-colors mx-4">
                 Get Early Access
