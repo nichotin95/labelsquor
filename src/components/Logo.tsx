@@ -2,10 +2,11 @@ import React from 'react';
 
 interface LogoProps {
   variant?: 'mobile' | 'desktop' | 'auto';
+  theme?: 'light' | 'dark';
   className?: string;
 }
 
-const Logo: React.FC<LogoProps> = ({ variant = 'auto', className = '' }) => {
+const Logo: React.FC<LogoProps> = ({ variant = 'auto', theme = 'light', className = '' }) => {
   const [windowWidth, setWindowWidth] = React.useState(
     typeof window !== 'undefined' ? window.innerWidth : 1024
   );
@@ -17,7 +18,29 @@ const Logo: React.FC<LogoProps> = ({ variant = 'auto', className = '' }) => {
   }, []);
 
   const isMobile = variant === 'mobile' || (variant === 'auto' && windowWidth < 768);
+  const isDark = theme === 'dark';
 
+  // For dark theme, use text-only version
+  if (isDark) {
+    return (
+      <div className={`flex items-center ${className}`}>
+        <div className="flex items-baseline">
+          <span className={`font-outfit font-bold ${
+            isMobile ? 'text-2xl' : 'text-2xl lg:text-3xl'
+          } text-white tracking-tight`}>
+            Label
+          </span>
+          <span className={`font-outfit font-bold ${
+            isMobile ? 'text-2xl' : 'text-2xl lg:text-3xl'
+          } text-blue-400`}>
+            Squor
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  // Light theme with logo image
   return (
     <div className={`flex items-center ${className}`}>
       {/* Logo Icon/Image */}

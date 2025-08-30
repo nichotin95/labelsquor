@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
         <div className="block md:hidden">
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
-              <Logo variant="mobile" />
+              <Logo variant="mobile" theme="dark" />
             </div>
             <p className="text-sm text-gray-400 leading-relaxed max-w-xs mx-auto">
               The global standard for product label trust — clarity for consumers, compliance for retailers.
@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
         <div className="hidden md:grid md:grid-cols-4 gap-8 mb-8">
           <div className="md:col-span-1">
             <div className="mb-6">
-              <Logo variant="desktop" />
+              <Logo variant="desktop" theme="dark" />
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">
               The global standard for product label trust — clarity for consumers, compliance for retailers.
