@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import { FaArrowRight, FaPlay, FaBuilding, FaCheckCircle, FaShieldAlt, FaLeaf } from 'react-icons/fa';
 import EmailCapture from './EmailCapture';
 import ImagePlaceholder from './ImagePlaceholder';
+import productsData from '../data/products.json';
+import { getSquorColor, getSquorBgColor } from '../utils/squorHelpers';
 
 interface HeroProps {
   mode: 'consumer' | 'retailer';
 }
 
 const Hero: React.FC<HeroProps> = ({ mode }) => {
+  // Get product data from products.json for Hero display
+  // Using a low-scoring product to demonstrate what LabelSquor reveals
+  const HERO_PRODUCT_INDEX = 6; // Parle-G Glucose Biscuits (low-scoring product - Health: 11)
+  const heroProduct = productsData[HERO_PRODUCT_INDEX];
+  
   const content = mode === 'consumer' ? {
     badge: "Trusted by 100K+ consumers",
     headline: "Trust, explained.",
@@ -95,77 +102,99 @@ const Hero: React.FC<HeroProps> = ({ mode }) => {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-20 h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-2">
                     <img
-                      src="/images/aashirvaad_atta.png"
-                      alt="Aashirvaad Whole Wheat Atta"
+                      src={heroProduct.image}
+                      alt={`${heroProduct.brand} ${heroProduct.name}`}
                       className="w-full h-full object-contain"
                     />
                   </div>
                   <div className="flex-1">
-                    <span className="text-xs font-dm-sans font-semibold text-trust-blue">Aashirvaad</span>
-                    <h4 className="text-base font-outfit font-bold text-coal-black">Whole Wheat Atta</h4>
-                    <span className="text-xs font-dm-sans text-gray-500">5kg • Staples</span>
+                    <span className="text-xs font-dm-sans font-semibold text-trust-blue">{heroProduct.brand}</span>
+                    <h4 className="text-base font-outfit font-bold text-coal-black">{heroProduct.name}</h4>
+                    <span className="text-xs font-dm-sans text-gray-500">{heroProduct.pack_size} • {heroProduct.category}</span>
                   </div>
                 </div>
                 
                 {/* All 4 Squors Grid */}
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   {/* Health Squor */}
-                  <div className="bg-green-50 border-2 border-green-500 rounded-xl p-3">
+                  <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.health)}`}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-dm-sans text-xs text-gray-600">Health</span>
-                      <FaCheckCircle className="text-xs text-green-700" />
+                      <FaCheckCircle className={`text-xs ${getSquorColor(heroProduct.scores.health)}`} />
                     </div>
-                    <div className="font-space-grotesk font-bold text-2xl text-green-700">100</div>
+                    <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.health)}`}>
+                      {heroProduct.scores.health}
+                    </div>
                   </div>
                   
                   {/* Safety Squor */}
-                  <div className="bg-green-50 border-2 border-green-500 rounded-xl p-3">
+                  <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.safety)}`}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-dm-sans text-xs text-gray-600">Safety</span>
-                      <FaShieldAlt className="text-xs text-green-700" />
+                      <FaShieldAlt className={`text-xs ${getSquorColor(heroProduct.scores.safety)}`} />
                     </div>
-                    <div className="font-space-grotesk font-bold text-2xl text-green-700">90</div>
+                    <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.safety)}`}>
+                      {heroProduct.scores.safety}
+                    </div>
                   </div>
                   
                   {/* Sustainability Squor */}
-                  <div className="bg-green-50 border-2 border-green-500 rounded-xl p-3">
+                  <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.sustainability)}`}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-dm-sans text-xs text-gray-600">Sustainability</span>
-                      <FaLeaf className="text-xs text-green-700" />
+                      <FaLeaf className={`text-xs ${getSquorColor(heroProduct.scores.sustainability)}`} />
                     </div>
-                    <div className="font-space-grotesk font-bold text-2xl text-green-700">80</div>
+                    <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.sustainability)}`}>
+                      {heroProduct.scores.sustainability}
+                    </div>
                   </div>
                   
                   {/* Verification Squor */}
-                  <div className="bg-green-50 border-2 border-green-500 rounded-xl p-3">
+                  <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.verification)}`}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-dm-sans text-xs text-gray-600">Verification</span>
-                      <FaCheckCircle className="text-xs text-green-700" />
+                      <FaCheckCircle className={`text-xs ${getSquorColor(heroProduct.scores.verification)}`} />
                     </div>
-                    <div className="font-space-grotesk font-bold text-2xl text-green-700">95</div>
+                    <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.verification)}`}>
+                      {heroProduct.scores.verification}
+                    </div>
                   </div>
                 </div>
 
-                {/* Key Insights */}
+                {/* Key Insights from Why Card and Flags */}
                 <div className="bg-gradient-to-br from-light-gray to-gray-50 rounded-lg p-3">
                   <h4 className="font-outfit font-semibold text-xs text-coal-black mb-2">Key Insights</h4>
                   <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="flex items-center">
-                      <span className="text-green-600 mr-1">✓</span>
-                      <span className="font-dm-sans text-gray-600">High Fiber</span>
-                    </div>
-                    <div className="flex items-center">
-                      <span className="text-green-600 mr-1">✓</span>
-                      <span className="font-dm-sans text-gray-600">Organic Certified</span>
-                    </div>
-                    <div className="flex items-center">
-                      <span className="text-green-600 mr-1">✓</span>
-                      <span className="font-dm-sans text-gray-600">Paper Pack</span>
-                    </div>
-                    <div className="flex items-center">
-                      <span className="text-green-600 mr-1">✓</span>
-                      <span className="font-dm-sans text-gray-600">FSSAI Valid</span>
-                    </div>
+                    {heroProduct.why_card.slice(0, 2).map((insight, index) => {
+                      // Determine if insight is positive or negative
+                      const isNegative = insight.toLowerCase().includes('high') && 
+                                        (insight.toLowerCase().includes('sugar') || 
+                                         insight.toLowerCase().includes('sodium') || 
+                                         insight.toLowerCase().includes('saturated') ||
+                                         insight.toLowerCase().includes('refined'));
+                      const isPositive = insight.toLowerCase().includes('fiber') || 
+                                        insight.toLowerCase().includes('protein');
+                      
+                      return (
+                        <div key={index} className="flex items-center">
+                          <span className={`mr-1 ${isNegative ? 'text-red-600' : isPositive ? 'text-green-600' : 'text-amber-600'}`}>
+                            {isNegative ? '✗' : isPositive ? '✓' : '•'}
+                          </span>
+                          <span className="font-dm-sans text-gray-600 truncate">{insight}</span>
+                        </div>
+                      );
+                    })}
+                    {heroProduct.flags.slice(0, 2).map((flag, index) => {
+                      const isPositive = flag.includes('FSSAI') || flag.includes('verified') || flag.includes('Organic');
+                      return (
+                        <div key={index + 2} className="flex items-center">
+                          <span className={`mr-1 ${isPositive ? 'text-green-600' : 'text-amber-600'}`}>
+                            {isPositive ? '✓' : '•'}
+                          </span>
+                          <span className="font-dm-sans text-gray-600 truncate">{flag}</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
