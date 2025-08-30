@@ -55,65 +55,46 @@ const InteractiveDemo: React.FC = () => {
             <span className="font-dm-sans text-sm font-semibold text-trust-blue">Live Demo</span>
           </div>
           <h2 className="font-outfit font-bold text-3xl sm:text-4xl lg:text-5xl text-coal-black mb-4">
-            Experience LabelSquor
+            Experience Label<span className="text-trust-blue">Squor</span>
           </h2>
           <p className="font-dm-sans text-lg text-cool-gray max-w-3xl mx-auto">
             Real products from Indian markets with actual Health, Safety, Sustainability & Verification Squors
           </p>
         </div>
 
-        {/* Product Carousel Selector */}
-        <div className="mb-12">
-          <div className="flex items-center justify-center gap-2 sm:gap-4 mb-6 px-4">
-            <button 
-              onClick={() => navigateProduct('prev')}
-              className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-all flex-shrink-0"
+        {/* Product Selector Pills */}
+        <div className="mb-8 flex flex-wrap justify-center gap-2 px-4">
+          {productsData.map((product, index) => (
+            <button
+              key={index}
+              onClick={() => setSelectedProduct(index)}
+              className={`px-4 py-2 rounded-full transition-all font-dm-sans text-sm ${
+                selectedProduct === index
+                  ? 'bg-trust-blue text-white shadow-lg scale-105'
+                  : 'bg-gray-100 text-coal-black hover:bg-gray-200 hover:shadow-md'
+              }`}
             >
-              <FaChevronLeft className="text-coal-black" />
+              {product.brand}
             </button>
-            
-            <div className="flex gap-2 overflow-x-auto max-w-2xl hide-scrollbar">
-              {productsData.map((product, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedProduct(index)}
-                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full transition-all font-dm-sans text-xs sm:text-sm whitespace-nowrap flex-shrink-0 ${
-                    selectedProduct === index
-                      ? 'bg-trust-blue text-white shadow-lg scale-105'
-                      : 'bg-gray-100 text-coal-black hover:bg-gray-200 hover:shadow-md'
-                  }`}
-                >
-                  {product.brand} {product.name}
-                </button>
-              ))}
-            </div>
-            
-            <button 
-              onClick={() => navigateProduct('next')}
-              className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-all flex-shrink-0"
-            >
-              <FaChevronRight className="text-coal-black" />
-            </button>
-          </div>
-          
-          {/* Dot indicators for mobile */}
-          <div className="flex justify-center gap-1.5 sm:hidden">
-            {productsData.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setSelectedProduct(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  selectedProduct === index
-                    ? 'bg-trust-blue w-6'
-                    : 'bg-gray-300'
-                }`}
-              />
-            ))}
-          </div>
+          ))}
         </div>
 
-        {/* Main Product Card */}
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-6xl mx-auto">
+        {/* Main Product Card with Navigation */}
+        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-6xl mx-auto relative">
+          {/* Navigation Arrows */}
+          <button 
+            onClick={() => navigateProduct('prev')}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/90 backdrop-blur rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110"
+          >
+            <FaChevronLeft className="text-coal-black text-lg" />
+          </button>
+          <button 
+            onClick={() => navigateProduct('next')}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/90 backdrop-blur rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110"
+          >
+            <FaChevronRight className="text-coal-black text-lg" />
+          </button>
+          
           <div className="grid lg:grid-cols-2">
             {/* Left: Product Image & Info */}
             <div className="bg-gradient-to-br from-light-gray/50 to-white p-8 lg:p-12">

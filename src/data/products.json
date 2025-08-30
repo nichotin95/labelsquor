@@ -66,7 +66,7 @@
     "scores": {
       "health": 100,
       "safety": 90,
-      "sustainability": 80,
+      "sustainability": 60,
       "verification": 95
     },
     "why_card": [
@@ -74,7 +74,7 @@
       "Good protein (~12 g/100 g)",
       "Very low sugar/sodium"
     ],
-    "flags": ["Paper packaging", "Organic certified", "FSSAI # present"],
+    "flags": ["Plastic packaging", "Organic certified", "FSSAI # present"],
     "image": "/images/aashirvaad_atta.png"
   },
   {

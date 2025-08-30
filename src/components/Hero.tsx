@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaArrowRight, FaPlay, FaBuilding, FaCheckCircle, FaShieldAlt } from 'react-icons/fa';
+import { FaArrowRight, FaPlay, FaBuilding, FaCheckCircle, FaShieldAlt, FaLeaf } from 'react-icons/fa';
 import EmailCapture from './EmailCapture';
 import ImagePlaceholder from './ImagePlaceholder';
 
@@ -89,52 +89,84 @@ const Hero: React.FC<HeroProps> = ({ mode }) => {
           {/* Visual Mockup */}
           <div className="mt-10 lg:mt-0">
             <div className="relative">
-              {/* Product Card with Health Squor */}
+              {/* Product Card with Complete Analysis */}
               <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-md mx-auto">
-                {/* Product Image - Using Aashirvaad Atta */}
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 mb-4">
-                  <img
-                    src="/images/aashirvaad_atta.png"
-                    alt="Aashirvaad Whole Wheat Atta"
-                    className="w-full h-40 object-contain"
-                  />
-                  <div className="text-center mt-2">
+                {/* Product Header */}
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-20 h-20 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-2">
+                    <img
+                      src="/images/aashirvaad_atta.png"
+                      alt="Aashirvaad Whole Wheat Atta"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-1">
                     <span className="text-xs font-dm-sans font-semibold text-trust-blue">Aashirvaad</span>
-                    <h4 className="text-sm font-outfit font-bold text-coal-black">Whole Wheat Atta</h4>
+                    <h4 className="text-base font-outfit font-bold text-coal-black">Whole Wheat Atta</h4>
+                    <span className="text-xs font-dm-sans text-gray-500">5kg • Staples</span>
                   </div>
                 </div>
                 
-                {/* Health Squor Badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="font-outfit font-bold text-lg text-coal-black">Health Squor</h3>
-                    <div className="flex items-center mt-1">
-                      <span className="font-space-grotesk font-bold text-3xl text-green-700">100</span>
-                      <span className="font-space-grotesk text-xl text-gray-600 ml-1">/100</span>
+                {/* All 4 Squors Grid */}
+                <div className="grid grid-cols-2 gap-3 mb-4">
+                  {/* Health Squor */}
+                  <div className="bg-green-50 border-2 border-green-500 rounded-xl p-3">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-dm-sans text-xs text-gray-600">Health</span>
+                      <FaCheckCircle className="text-xs text-green-700" />
                     </div>
+                    <div className="font-space-grotesk font-bold text-2xl text-green-700">100</div>
                   </div>
-                  <div className="bg-success-green/10 p-3 rounded-full">
-                    <FaCheckCircle className="text-success-green text-2xl" />
+                  
+                  {/* Safety Squor */}
+                  <div className="bg-green-50 border-2 border-green-500 rounded-xl p-3">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-dm-sans text-xs text-gray-600">Safety</span>
+                      <FaShieldAlt className="text-xs text-green-700" />
+                    </div>
+                    <div className="font-space-grotesk font-bold text-2xl text-green-700">90</div>
+                  </div>
+                  
+                  {/* Sustainability Squor */}
+                  <div className="bg-green-50 border-2 border-green-500 rounded-xl p-3">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-dm-sans text-xs text-gray-600">Sustainability</span>
+                      <FaLeaf className="text-xs text-green-700" />
+                    </div>
+                    <div className="font-space-grotesk font-bold text-2xl text-green-700">80</div>
+                  </div>
+                  
+                  {/* Verification Squor */}
+                  <div className="bg-green-50 border-2 border-green-500 rounded-xl p-3">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-dm-sans text-xs text-gray-600">Verification</span>
+                      <FaCheckCircle className="text-xs text-green-700" />
+                    </div>
+                    <div className="font-space-grotesk font-bold text-2xl text-green-700">95</div>
                   </div>
                 </div>
 
-                {/* Why Card */}
-                <div className="bg-light-gray rounded-lg p-4">
-                  <h4 className="font-outfit font-semibold text-sm text-coal-black mb-2">Why this Squor?</h4>
-                  <ul className="space-y-1">
-                    <li className="flex items-start">
-                      <span className="text-success-green mr-2">✓</span>
-                      <span className="text-xs font-dm-sans text-cool-gray">High fiber (~12 g/100 g)</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-success-green mr-2">✓</span>
-                      <span className="text-xs font-dm-sans text-cool-gray">Good protein (~12 g/100 g)</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-success-green mr-2">✓</span>
-                      <span className="text-xs font-dm-sans text-cool-gray">Very low sugar/sodium</span>
-                    </li>
-                  </ul>
+                {/* Key Insights */}
+                <div className="bg-gradient-to-br from-light-gray to-gray-50 rounded-lg p-3">
+                  <h4 className="font-outfit font-semibold text-xs text-coal-black mb-2">Key Insights</h4>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="flex items-center">
+                      <span className="text-green-600 mr-1">✓</span>
+                      <span className="font-dm-sans text-gray-600">High Fiber</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-green-600 mr-1">✓</span>
+                      <span className="font-dm-sans text-gray-600">Organic Certified</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-green-600 mr-1">✓</span>
+                      <span className="font-dm-sans text-gray-600">Paper Pack</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-green-600 mr-1">✓</span>
+                      <span className="font-dm-sans text-gray-600">FSSAI Valid</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
