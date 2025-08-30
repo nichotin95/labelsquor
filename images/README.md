@@ -3,14 +3,14 @@
 This directory contains product images for the LabelSquor demo.
 
 ## Required Images:
-- instant_noodles.jpg - Instant Noodles (Masala)
-- potato_chips.jpg - Potato Chips (Salted)
-- cola.jpg - Cola (Soft Drink)
-- atta.jpg - Whole-Wheat Atta
-- curd.jpg - Plain Curd (Dahi)
-- paneer.jpg - Paneer
-- biscuits.jpg - Glucose Biscuits
-- bread.jpg - Whole-Wheat Bread
+- maggi_noodles.jpg - Maggi Instant Noodles
+- lays_chips.jpg - Lay's Potato Chips (Salted)
+- coca_cola.jpg - Coca-Cola
+- aashirvaad_atta.jpg - Aashirvaad Whole-Wheat Atta
+- amul_curd.jpg - Amul Plain Curd (Dahi)
+- motherdairy_paneer.jpg - Mother Dairy Paneer
+- parle_g.jpg - Parle-G Glucose Biscuits
+- britannia_bread.jpg - Britannia Whole-Wheat Bread
 
 ## Image Guidelines:
 - Size: 300x400px minimum
