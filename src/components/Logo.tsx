@@ -30,7 +30,7 @@ const Logo: React.FC<LogoProps> = ({ variant = 'auto', className = '' }) => {
             src="/logo_ls.png"
             alt="LabelSquor"
             className={`${
-              isMobile ? 'w-9 h-9' : 'w-11 h-11 lg:w-12 lg:h-12'
+              isMobile ? 'w-20 h-20' : 'w-20 h-20 lg:w-24 lg:h-24'
             } object-contain`}
             onError={(e) => {
               // Fallback to a simple colored square with initials
@@ -38,10 +38,10 @@ const Logo: React.FC<LogoProps> = ({ variant = 'auto', className = '' }) => {
               img.style.display = 'none';
               const fallback = document.createElement('div');
               fallback.className = `${
-                isMobile ? 'w-9 h-9' : 'w-11 h-11 lg:w-12 lg:h-12'
+                isMobile ? 'w-20 h-20' : 'w-20 h-20 lg:w-24 lg:h-24'
               } bg-blue-600 rounded-lg flex items-center justify-center shadow-sm`;
               fallback.innerHTML = `<span class="text-white font-bold ${
-                isMobile ? 'text-sm' : 'text-base lg:text-lg'
+                isMobile ? 'text-2xl' : 'text-2xl lg:text-3xl'
               }">LS</span>`;
               img.parentNode?.replaceChild(fallback, img);
             }}
@@ -49,14 +49,14 @@ const Logo: React.FC<LogoProps> = ({ variant = 'auto', className = '' }) => {
         </picture>
         
         {/* Text Logo */}
-        <div className={`flex items-baseline ${isMobile ? 'ml-2' : 'ml-3'}`}>
+        <div className={`flex items-baseline ${isMobile ? 'ml-2.5' : 'ml-3 lg:ml-4'}`}>
           <span className={`font-outfit font-bold ${
-            isMobile ? 'text-lg' : 'text-xl lg:text-2xl'
+            isMobile ? 'text-2xl' : 'text-2xl lg:text-3xl'
           } text-gray-900 tracking-tight`}>
             Label
           </span>
           <span className={`font-outfit font-bold ${
-            isMobile ? 'text-lg' : 'text-xl lg:text-2xl'
+            isMobile ? 'text-2xl' : 'text-2xl lg:text-3xl'
           } text-blue-600`}>
             Squor
           </span>
