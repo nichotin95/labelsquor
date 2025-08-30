@@ -82,7 +82,7 @@ const InteractiveDemo: React.FC = () => {
                       : 'bg-white text-coal-black shadow-md hover:shadow-lg'
                   }`}
                 >
-                  {product.name}
+                  {product.brand} {product.name}
                 </button>
               ))}
             </div>
@@ -116,6 +116,9 @@ const InteractiveDemo: React.FC = () => {
               
               {/* Product Details */}
               <div className="text-center">
+                <div className="font-dm-sans text-sm font-semibold text-trust-blue mb-1">
+                  {currentProduct.brand}
+                </div>
                 <h3 className="font-outfit font-bold text-2xl text-coal-black mb-2">
                   {currentProduct.name}
                 </h3>

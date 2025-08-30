@@ -70,6 +70,9 @@ const ProductGrid: React.FC = () => {
               <div className="p-4">
                 {/* Header */}
                 <div className="mb-3">
+                  <div className="font-dm-sans text-xs font-semibold text-trust-blue mb-0.5">
+                    {product.brand}
+                  </div>
                   <h3 className="font-outfit font-bold text-lg text-coal-black mb-1">
                     {product.name}
                   </h3>

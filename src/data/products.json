@@ -1,6 +1,7 @@
 [
   {
-    "name": "Instant Noodles (Masala)",
+    "name": "Instant Noodles",
+    "brand": "Maggi",
     "category": "Packaged Foods",
     "pack_size": "70g",
     "scores": {
@@ -16,10 +17,11 @@
       "Some fiber and protein present"
     ],
     "flags": ["Multi-layer plastic packaging", "FSSAI # present", "GTIN valid"],
-    "image": "/images/instant_noodles.jpg"
+    "image": "/images/maggi_noodles.jpg"
   },
   {
     "name": "Potato Chips (Salted)",
+    "brand": "Lay's",
     "category": "Snacks",
     "pack_size": "50g",
     "scores": {
@@ -35,10 +37,11 @@
       "Low fiber/protein"
     ],
     "flags": ["Palm oil (no RSPO)", "Plastic packaging", "Barcode verified"],
-    "image": "/images/potato_chips.jpg"
+    "image": "/images/lays_chips.jpg"
   },
   {
-    "name": "Cola (Soft Drink)",
+    "name": "Cola",
+    "brand": "Coca-Cola",
     "category": "Beverage",
     "pack_size": "330ml",
     "scores": {
@@ -53,10 +56,11 @@
       "Sodium minimal"
     ],
     "flags": ["PET bottle", "GTIN valid", "FSSAI license"],
-    "image": "/images/cola.jpg"
+    "image": "/images/coca_cola.jpg"
   },
   {
     "name": "Whole-Wheat Atta",
+    "brand": "Aashirvaad",
     "category": "Staples",
     "pack_size": "5kg",
     "scores": {
@@ -71,10 +75,11 @@
       "Very low sugar/sodium"
     ],
     "flags": ["Paper packaging", "Organic certified", "FSSAI # present"],
-    "image": "/images/atta.jpg"
+    "image": "/images/aashirvaad_atta.jpg"
   },
   {
     "name": "Plain Curd (Dahi)",
+    "brand": "Amul",
     "category": "Dairy",
     "pack_size": "500ml",
     "scores": {
@@ -89,10 +94,11 @@
       "Fermented dairy protein"
     ],
     "flags": ["Plastic tub", "Batch/EXP legible", "FSSAI # present"],
-    "image": "/images/curd.jpg"
+    "image": "/images/amul_curd.jpg"
   },
   {
     "name": "Paneer",
+    "brand": "Mother Dairy",
     "category": "Dairy",
     "pack_size": "200g",
     "scores": {
@@ -107,10 +113,11 @@
       "Very low sugar/sodium"
     ],
     "flags": ["Plastic tray", "FSSAI license", "GTIN verified"],
-    "image": "/images/paneer.jpg"
+    "image": "/images/motherdairy_paneer.jpg"
   },
   {
     "name": "Glucose Biscuits",
+    "brand": "Parle-G",
     "category": "Snacks",
     "pack_size": "100g",
     "scores": {
@@ -126,10 +133,11 @@
       "Low fiber"
     ],
     "flags": ["Plastic packaging", "Barcode verified", "FSSAI license"],
-    "image": "/images/biscuits.jpg"
+    "image": "/images/parle_g.jpg"
   },
   {
     "name": "Whole-Wheat Bread",
+    "brand": "Britannia",
     "category": "Bakery",
     "pack_size": "400g",
     "scores": {
@@ -144,6 +152,6 @@
       "Some added sugar"
     ],
     "flags": ["Plastic pack", "Batch/EXP present", "GTIN valid"],
-    "image": "/images/bread.jpg"
+    "image": "/images/britannia_bread.jpg"
   }
 ]
