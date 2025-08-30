@@ -46,14 +46,14 @@ Label accuracy:
 
 ## 🇮🇳 Current Products in Demo
 
-1. **Instant Noodles (Masala)** - Health: 24 (Poor)
-2. **Potato Chips (Salted)** - Health: 41 (Moderate)
-3. **Cola (Soft Drink)** - Health: 47 (Moderate)
-4. **Whole-Wheat Atta** - Health: 100 (Excellent)
-5. **Plain Curd (Dahi)** - Health: 75 (Good)
-6. **Paneer** - Health: 65 (Good)
-7. **Glucose Biscuits** - Health: 11 (Poor)
-8. **Whole-Wheat Bread** - Health: 82 (Excellent)
+1. **Maggi Instant Noodles** - Health: 24 (Poor)
+2. **Lay's Potato Chips** - Health: 41 (Moderate)
+3. **Coca-Cola** - Health: 47 (Moderate)
+4. **Aashirvaad Whole-Wheat Atta** - Health: 100 (Excellent)
+5. **Amul Plain Curd** - Health: 75 (Good)
+6. **Mother Dairy Paneer** - Health: 65 (Good)
+7. **Parle-G Glucose Biscuits** - Health: 11 (Poor)
+8. **Britannia Whole-Wheat Bread** - Health: 82 (Excellent)
 
 ## 📱 Components
 
@@ -73,14 +73,14 @@ Label accuracy:
 
 1. Add images to `/public/images/`
 2. Name them exactly as in products.json:
-   - instant_noodles.jpg
-   - potato_chips.jpg
-   - cola.jpg
-   - atta.jpg
-   - curd.jpg
-   - paneer.jpg
-   - biscuits.jpg
-   - bread.jpg
+   - maggi_noodles.jpg
+   - lays_chips.jpg
+   - coca_cola.jpg
+   - aashirvaad_atta.jpg
+   - amul_curd.jpg
+   - motherdairy_paneer.jpg
+   - parle_g.jpg
+   - britannia_bread.jpg
 
 ## 🎨 Design System
 
@@ -95,6 +95,7 @@ Label accuracy:
 ```json
 {
   "name": "Product Name",
+  "brand": "Brand Name",
   "category": "Category",
   "pack_size": "Size",
   "scores": {
