@@ -5,14 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
     "clean": "rm -rf dist node_modules/.vite .vite assets && echo '✅ Cleaned!'",
     "clean:dev": "sh cleanup-dev.sh",
     "fresh": "npm run clean:dev && npm run dev",
-    "build": "vite build && cp CNAME dist/ 2>/dev/null || true",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "bash scripts/deploy.sh",
+    "deploy:clean": "bash scripts/clean-deploy.sh",
+    "deploy:quick": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^1.9.0",
