@@ -41,6 +41,12 @@ fi
 cp public/logo*.* dist/ 2>/dev/null || true
 echo -e "${GREEN}✓ Logo files copied${NC}"
 
+# Copy images folder if it exists
+if [ -d "public/images" ]; then
+    cp -r public/images dist/
+    echo -e "${GREEN}✓ Product images copied${NC}"
+fi
+
 # Create a .nojekyll file to prevent GitHub Pages from processing
 touch dist/.nojekyll
 echo -e "${GREEN}✓ Added .nojekyll file${NC}"
