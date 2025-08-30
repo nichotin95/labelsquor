@@ -7,12 +7,12 @@ const ForConsumers: React.FC = () => {
       icon: <FaChartLine className="text-3xl" />,
       title: 'Clear Scores',
       description: 'Get instant Health, Safety, and Sustainability scores for any product. No guesswork, just clarity.',
-      details: ['Health Score 0-100', 'Safety Verification', 'Sustainability Rating']
+      details: ['Health Squor 0-100', 'Safety Verification', 'Sustainability Rating']
     },
     {
       icon: <FaClipboardList className="text-3xl" />,
       title: 'Why Cards',
-      description: 'Understand the reasoning behind every score with transparent explanations and citations.',
+      description: 'Understand the reasoning behind every Squor with transparent explanations and citations.',
       details: ['Evidence-based reasons', 'Regulatory citations', 'Ingredient analysis']
     },
     {

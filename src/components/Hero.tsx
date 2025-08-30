@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaArrowRight, FaPlay, FaBuilding, FaCheckCircle, FaShieldAlt } from 'react-icons/fa';
 import EmailCapture from './EmailCapture';
+import ImagePlaceholder from './ImagePlaceholder';
 
 interface HeroProps {
   mode: 'consumer' | 'retailer';
@@ -15,7 +16,7 @@ const Hero: React.FC<HeroProps> = ({ mode }) => {
     secondaryCTA: "For Retailers & Brands",
     features: [
       { icon: "📱", text: "Scan any product label instantly" },
-      { icon: "📊", text: "Get clear Health, Safety & Sustainability scores" },
+      { icon: "📊", text: "Get clear Health, Safety & Sustainability Squors" },
       { icon: "✓", text: "Evidence-backed explanations for every rating" }
     ]
   } : {
@@ -90,9 +91,17 @@ const Hero: React.FC<HeroProps> = ({ mode }) => {
             <div className="relative">
               {/* Product Card with Health Squor */}
               <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-md mx-auto">
-                {/* Product Image Placeholder */}
-                <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-48 mb-4 flex items-center justify-center">
-                  <span className="text-gray-400 font-dm-sans">Product Image</span>
+                {/* Product Image - Using Aashirvaad Atta */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 mb-4">
+                  <img
+                    src="/images/aashirvaad_atta.png"
+                    alt="Aashirvaad Whole Wheat Atta"
+                    className="w-full h-40 object-contain"
+                  />
+                  <div className="text-center mt-2">
+                    <span className="text-xs font-dm-sans font-semibold text-trust-blue">Aashirvaad</span>
+                    <h4 className="text-sm font-outfit font-bold text-coal-black">Whole Wheat Atta</h4>
+                  </div>
                 </div>
                 
                 {/* Health Squor Badge */}
@@ -100,8 +109,8 @@ const Hero: React.FC<HeroProps> = ({ mode }) => {
                   <div>
                     <h3 className="font-outfit font-bold text-lg text-coal-black">Health Squor</h3>
                     <div className="flex items-center mt-1">
-                      <span className="font-space-grotesk font-bold text-3xl text-trust-blue">74</span>
-                      <span className="font-space-grotesk text-xl text-cool-gray ml-1">/100</span>
+                      <span className="font-space-grotesk font-bold text-3xl text-green-700">100</span>
+                      <span className="font-space-grotesk text-xl text-gray-600 ml-1">/100</span>
                     </div>
                   </div>
                   <div className="bg-success-green/10 p-3 rounded-full">
@@ -111,19 +120,19 @@ const Hero: React.FC<HeroProps> = ({ mode }) => {
 
                 {/* Why Card */}
                 <div className="bg-light-gray rounded-lg p-4">
-                  <h4 className="font-outfit font-semibold text-sm text-coal-black mb-2">Why this score?</h4>
+                  <h4 className="font-outfit font-semibold text-sm text-coal-black mb-2">Why this Squor?</h4>
                   <ul className="space-y-1">
                     <li className="flex items-start">
-                      <span className="text-success-green mr-2">+</span>
-                      <span className="text-xs font-dm-sans text-cool-gray">High protein content</span>
+                      <span className="text-success-green mr-2">✓</span>
+                      <span className="text-xs font-dm-sans text-cool-gray">High fiber (~12 g/100 g)</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-warning-amber mr-2">-</span>
-                      <span className="text-xs font-dm-sans text-cool-gray">Moderate sodium levels</span>
+                      <span className="text-success-green mr-2">✓</span>
+                      <span className="text-xs font-dm-sans text-cool-gray">Good protein (~12 g/100 g)</span>
                     </li>
                     <li className="flex items-start">
-                      <FaShieldAlt className="text-trust-blue mt-0.5 mr-2 text-xs" />
-                      <span className="text-xs font-dm-sans text-cool-gray">FOPL compliant</span>
+                      <span className="text-success-green mr-2">✓</span>
+                      <span className="text-xs font-dm-sans text-cool-gray">Very low sugar/sodium</span>
                     </li>
                   </ul>
                 </div>

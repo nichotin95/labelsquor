@@ -57,19 +57,19 @@ const DemoSection: React.FC = () => {
         {/* Main Demo Card */}
         <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-10 mb-12 max-w-4xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8">
-            {/* Score Display */}
+            {/* Squor Display */}
             <div>
               <h3 className="font-outfit font-bold text-2xl text-coal-black mb-6">
                 Health Squor
               </h3>
               
-              {/* Main Score */}
+              {/* Main Squor */}
               <div className="flex items-center mb-6">
                 <span className="font-space-grotesk font-bold text-6xl text-trust-blue">74</span>
                 <span className="font-space-grotesk text-3xl text-cool-gray ml-2">/100</span>
               </div>
 
-              {/* Score Breakdown */}
+              {/* Squor Breakdown */}
               <div className="space-y-3 mb-6">
                 <div className="flex items-center justify-between">
                   <span className="font-dm-sans text-sm text-cool-gray">Health</span>
@@ -104,7 +104,7 @@ const DemoSection: React.FC = () => {
             {/* Why Card */}
             <div className="bg-light-gray rounded-2xl p-6">
               <h4 className="font-outfit font-bold text-lg text-coal-black mb-4">
-                Why this score?
+                Why this Squor?
               </h4>
               <ul className="space-y-3">
                 <li className="flex items-start">

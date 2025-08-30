@@ -41,7 +41,7 @@ function App() {
           <div className="animate-fadeIn">
             <ForConsumers />
             <InteractiveDemo />
-            <ProductGrid />
+            {/* ProductGrid removed - InteractiveDemo handles product showcase */}
           </div>
         ) : (
           <div className="animate-fadeIn">

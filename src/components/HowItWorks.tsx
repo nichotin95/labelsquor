@@ -21,7 +21,7 @@ const HowItWorks: React.FC = () => {
       number: '3',
       icon: <FaClipboardCheck className="text-3xl" />,
       title: 'See Evidence',
-      description: 'Review detailed explanations, compliance summaries, and evidence for every score we provide.',
+      description: 'Review detailed explanations, compliance summaries, and evidence for every Squor we provide.',
       color: 'from-gradient-purple to-purple-500'
     }
   ];
