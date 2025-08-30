@@ -166,7 +166,7 @@ const InteractiveDemo: React.FC = () => {
                   <div className={`rounded-xl p-4 border-2 ${getSquorBgColor(currentProduct.scores.health)}`}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-dm-sans text-xs text-cool-gray">Health</span>
-                    <FaCheckCircle className={`text-xs ${getScoreColor(currentProduct.scores.health)}`} />
+                    <FaCheckCircle className={`text-xs ${getSquorColor(currentProduct.scores.health)}`} />
                   </div>
                                       <div className={`font-space-grotesk font-bold text-3xl ${getSquorColor(currentProduct.scores.health)}`}>
                     {currentProduct.scores.health}
@@ -177,7 +177,7 @@ const InteractiveDemo: React.FC = () => {
                   <div className={`rounded-xl p-4 border-2 ${getSquorBgColor(currentProduct.scores.safety)}`}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-dm-sans text-xs text-cool-gray">Safety</span>
-                    <FaShieldAlt className={`text-xs ${getScoreColor(currentProduct.scores.safety)}`} />
+                    <FaShieldAlt className={`text-xs ${getSquorColor(currentProduct.scores.safety)}`} />
                   </div>
                                       <div className={`font-space-grotesk font-bold text-3xl ${getSquorColor(currentProduct.scores.safety)}`}>
                     {currentProduct.scores.safety}
@@ -188,7 +188,7 @@ const InteractiveDemo: React.FC = () => {
                   <div className={`rounded-xl p-4 border-2 ${getSquorBgColor(currentProduct.scores.sustainability)}`}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-dm-sans text-xs text-cool-gray">Sustainability</span>
-                    <FaLeaf className={`text-xs ${getScoreColor(currentProduct.scores.sustainability)}`} />
+                    <FaLeaf className={`text-xs ${getSquorColor(currentProduct.scores.sustainability)}`} />
                   </div>
                                       <div className={`font-space-grotesk font-bold text-3xl ${getSquorColor(currentProduct.scores.sustainability)}`}>
                     {currentProduct.scores.sustainability}
@@ -199,7 +199,7 @@ const InteractiveDemo: React.FC = () => {
                   <div className={`rounded-xl p-4 border-2 ${getSquorBgColor(currentProduct.scores.verification)}`}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-dm-sans text-xs text-cool-gray">Verification</span>
-                    <FaCheckCircle className={`text-xs ${getScoreColor(currentProduct.scores.verification)}`} />
+                    <FaCheckCircle className={`text-xs ${getSquorColor(currentProduct.scores.verification)}`} />
                   </div>
                                       <div className={`font-space-grotesk font-bold text-3xl ${getSquorColor(currentProduct.scores.verification)}`}>
                     {currentProduct.scores.verification}

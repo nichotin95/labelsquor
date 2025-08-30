@@ -6,10 +6,8 @@ import ForConsumers from './components/ForConsumers';
 import ForRetailers from './components/ForRetailers';
 import HowItWorks from './components/HowItWorks';
 import InteractiveDemo from './components/InteractiveDemo';
-import ProductGrid from './components/ProductGrid';
 import DemoSection from './components/DemoSection';
 import Features from './components/Features';
-import ProductExamples from './components/ProductExamples';
 import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 
