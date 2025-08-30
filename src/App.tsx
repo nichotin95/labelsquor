@@ -5,6 +5,7 @@ import ModeSwitch from './components/ModeSwitch';
 import ForConsumers from './components/ForConsumers';
 import ForRetailers from './components/ForRetailers';
 import HowItWorks from './components/HowItWorks';
+import InteractiveDemo from './components/InteractiveDemo';
 import DemoSection from './components/DemoSection';
 import Features from './components/Features';
 import ProductExamples from './components/ProductExamples';
@@ -38,9 +39,8 @@ function App() {
         {mode === 'consumer' ? (
           <div className="animate-fadeIn">
             <ForConsumers />
-            <DemoSection />
-            {/* Only show ProductExamples if it exists */}
-            {typeof ProductExamples !== 'undefined' && <ProductExamples />}
+            <InteractiveDemo />
+            {/* Remove ProductExamples as InteractiveDemo replaces it */}
           </div>
         ) : (
           <div className="animate-fadeIn">
