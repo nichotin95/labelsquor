@@ -24,19 +24,26 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
     }
   };
 
-  const navLinks = [
+  const navLinks = mode === 'consumer' ? [
     { 
       name: 'How It Works', 
       href: '#how-it-works',
       onClick: () => handleNavClick('#how-it-works')
     },
     { 
-      name: 'For Consumers', 
+      name: 'Features', 
       href: '#consumers',
-      onClick: () => {
-        onModeChange('consumer');
-        setTimeout(() => handleNavClick('#consumers'), 100);
-      }
+      onClick: () => handleNavClick('#consumers')
+    },
+    { 
+      name: 'Demo', 
+      href: '#interactive-demo',
+      onClick: () => handleNavClick('#interactive-demo')
+    },
+    { 
+      name: 'Trust & Safety', 
+      href: '#about',
+      onClick: () => handleNavClick('#about')
     },
     { 
       name: 'For Retailers', 
@@ -46,10 +53,34 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
         setTimeout(() => handleNavClick('#retailers'), 100);
       }
     },
+  ] : [
     { 
-      name: 'About', 
-      href: '#about',
-      onClick: () => handleNavClick('#about')
+      name: 'How It Works', 
+      href: '#how-it-works',
+      onClick: () => handleNavClick('#how-it-works')
+    },
+    { 
+      name: 'Solutions', 
+      href: '#retailers',
+      onClick: () => handleNavClick('#retailers')
+    },
+    { 
+      name: 'Analytics', 
+      href: '#analytics',
+      onClick: () => handleNavClick('#analytics')
+    },
+    { 
+      name: 'Case Studies', 
+      href: '#case-studies',
+      onClick: () => handleNavClick('#case-studies')
+    },
+    { 
+      name: 'For Consumers', 
+      href: '#consumers',
+      onClick: () => {
+        onModeChange('consumer');
+        setTimeout(() => handleNavClick('#consumers'), 100);
+      }
     },
   ];
 
@@ -67,8 +98,7 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
                 key={link.name}
                 onClick={link.onClick}
                 className={`font-dm-sans text-cool-gray hover:text-coal-black transition-colors text-sm font-medium ${
-                  (link.name === 'For Consumers' && mode === 'consumer') ||
-                  (link.name === 'For Retailers' && mode === 'retailer')
+                  link.name === 'For Consumers' || link.name === 'For Retailers'
                     ? 'text-trust-blue font-semibold'
                     : ''
                 }`}
@@ -129,8 +159,7 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
                     setIsMobileMenuOpen(false);
                   }}
                   className={`px-4 py-2 rounded-lg text-base font-dm-sans text-coal-black hover:bg-gray-50 text-left ${
-                    (link.name === 'For Consumers' && mode === 'consumer') ||
-                    (link.name === 'For Retailers' && mode === 'retailer')
+                    link.name === 'For Consumers' || link.name === 'For Retailers'
                       ? 'bg-trust-blue/10 text-trust-blue font-semibold'
                       : ''
                   }`}

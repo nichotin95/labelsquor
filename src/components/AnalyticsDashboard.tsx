@@ -3,7 +3,7 @@ import { FaChartLine, FaExclamationTriangle, FaCheckCircle, FaClock, FaGlobe, Fa
 
 const AnalyticsDashboard: React.FC = () => {
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="analytics" className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -65,19 +65,45 @@ const AnalyticsDashboard: React.FC = () => {
             {/* Compliance Trend */}
             <div className="bg-gray-50 rounded-xl p-4">
               <h4 className="font-outfit font-semibold text-sm text-coal-black mb-4">Compliance Trend</h4>
-              <div className="h-32 flex items-end justify-between space-x-2">
-                {[65, 72, 68, 85, 92, 88, 95].map((height, i) => (
-                  <div key={i} className="flex-1">
-                    <div 
-                      className="bg-gradient-to-t from-trust-blue to-blue-400 rounded-t"
-                      style={{ height: `${height}%` }}
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="flex justify-between mt-2 text-xs font-dm-sans text-gray-500">
-                <span>Mon</span>
-                <span>Sun</span>
+              <div className="relative h-32">
+                {/* Y-axis labels */}
+                <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs font-dm-sans text-gray-500 -ml-1">
+                  <span>100%</span>
+                  <span>75%</span>
+                  <span>50%</span>
+                  <span>25%</span>
+                  <span>0%</span>
+                </div>
+                
+                {/* Chart bars */}
+                <div className="ml-8 h-full flex items-end justify-between gap-1">
+                  {[
+                    { day: 'Mon', value: 65 },
+                    { day: 'Tue', value: 72 },
+                    { day: 'Wed', value: 68 },
+                    { day: 'Thu', value: 85 },
+                    { day: 'Fri', value: 92 },
+                    { day: 'Sat', value: 88 },
+                    { day: 'Sun', value: 95 }
+                  ].map((item, i) => (
+                    <div key={i} className="flex-1 h-full flex flex-col justify-end items-center">
+                      {/* Bar */}
+                      <div className="w-full relative group">
+                        <div 
+                          className="bg-gradient-to-t from-trust-blue to-blue-400 rounded-t transition-all duration-300 hover:from-blue-600 hover:to-blue-500"
+                          style={{ height: `${(item.value / 100) * 128}px` }}
+                        >
+                          {/* Tooltip on hover */}
+                          <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                            {item.value}%
+                          </div>
+                        </div>
+                      </div>
+                      {/* Day label */}
+                      <span className="text-xs font-dm-sans text-gray-500 mt-1">{item.day.slice(0, 1)}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -128,24 +154,63 @@ const AnalyticsDashboard: React.FC = () => {
             <div className="bg-gray-50 rounded-xl p-4">
               <h4 className="font-outfit font-semibold text-sm text-coal-black mb-4">Risk Distribution</h4>
               <div className="relative h-32 flex items-center justify-center">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-32 h-32 rounded-full border-8 border-red-500 border-t-transparent border-r-transparent" style={{ transform: 'rotate(-45deg)' }}></div>
-                  <div className="absolute w-24 h-24 rounded-full border-8 border-amber-500 border-b-transparent border-l-transparent" style={{ transform: 'rotate(45deg)' }}></div>
-                  <div className="absolute w-16 h-16 rounded-full border-8 border-green-500"></div>
-                </div>
+                {/* Donut Chart */}
+                <svg className="w-32 h-32" viewBox="0 0 100 100">
+                  {/* Background circle */}
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="#e5e7eb" strokeWidth="15" />
+                  
+                  {/* High Risk - 15% */}
+                  <circle
+                    cx="50" cy="50" r="40"
+                    fill="none"
+                    stroke="#ef4444"
+                    strokeWidth="15"
+                    strokeDasharray={`${15 * 2.51} ${251 - (15 * 2.51)}`}
+                    strokeDashoffset="0"
+                    transform="rotate(-90 50 50)"
+                  />
+                  
+                  {/* Medium Risk - 35% */}
+                  <circle
+                    cx="50" cy="50" r="40"
+                    fill="none"
+                    stroke="#f59e0b"
+                    strokeWidth="15"
+                    strokeDasharray={`${35 * 2.51} ${251 - (35 * 2.51)}`}
+                    strokeDashoffset={`-${15 * 2.51}`}
+                    transform="rotate(-90 50 50)"
+                  />
+                  
+                  {/* Low Risk - 50% */}
+                  <circle
+                    cx="50" cy="50" r="40"
+                    fill="none"
+                    stroke="#10b981"
+                    strokeWidth="15"
+                    strokeDasharray={`${50 * 2.51} ${251 - (50 * 2.51)}`}
+                    strokeDashoffset={`-${50 * 2.51}`}
+                    transform="rotate(-90 50 50)"
+                  />
+                  
+                  {/* Center text */}
+                  <text x="50" y="50" textAnchor="middle" dominantBaseline="middle" className="fill-coal-black">
+                    <tspan className="font-space-grotesk font-bold text-lg">3,356</tspan>
+                    <tspan x="50" dy="15" className="font-dm-sans text-xs fill-gray-600">Products</tspan>
+                  </text>
+                </svg>
               </div>
-              <div className="flex justify-center space-x-4 mt-4">
+              <div className="flex justify-center space-x-3 mt-4">
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-red-500 rounded-full mr-1"></div>
-                  <span className="text-xs font-dm-sans">High</span>
+                  <span className="text-xs font-dm-sans">High (15%)</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-amber-500 rounded-full mr-1"></div>
-                  <span className="text-xs font-dm-sans">Med</span>
+                  <span className="text-xs font-dm-sans">Med (35%)</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-green-500 rounded-full mr-1"></div>
-                  <span className="text-xs font-dm-sans">Low</span>
+                  <span className="text-xs font-dm-sans">Low (50%)</span>
                 </div>
               </div>
             </div>

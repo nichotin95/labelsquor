@@ -30,7 +30,7 @@ const HowItWorksRetailer: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-b from-white to-gray-50">
+    <section id="how-it-works" className="py-16 sm:py-20 bg-gradient-to-b from-white to-gray-50 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -47,37 +47,40 @@ const HowItWorksRetailer: React.FC = () => {
         </div>
 
         {/* Process Timeline */}
-        <div className="relative mb-16">
-          {/* Timeline Line */}
-          <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-trust-blue/20 via-trust-blue to-trust-blue/20 hidden lg:block"></div>
-          
+        <div className="mb-16">
           {/* Steps */}
-          <div className="grid lg:grid-cols-4 gap-6 relative">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {steps.map((step, index) => (
-              <div key={index} className="relative">
+              <div key={index} className="relative group">
+                {/* Connection Line - only on desktop between items */}
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-trust-blue/30 to-trust-blue/10 z-0" 
+                       style={{ width: '100%', transform: 'translateX(-50%)' }} />
+                )}
+                
                 {/* Step Card */}
-                <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-trust-blue/20">
+                <div className="relative bg-white rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-trust-blue/30 z-10">
                   {/* Step Number */}
-                  <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-r from-trust-blue to-purple-600 text-white rounded-full flex items-center justify-center font-outfit font-bold text-sm">
+                  <div className="absolute -top-2 -right-2 w-7 h-7 bg-gradient-to-r from-trust-blue to-purple-600 text-white rounded-full flex items-center justify-center font-outfit font-bold text-xs">
                     {index + 1}
                   </div>
                   
                   {/* Icon */}
-                  <div className="w-12 h-12 bg-gradient-to-r from-trust-blue to-purple-600 rounded-xl flex items-center justify-center text-white mb-4">
-                    {step.icon}
+                  <div className="w-10 h-10 bg-gradient-to-r from-trust-blue to-purple-600 rounded-lg flex items-center justify-center text-white mb-3">
+                    {React.cloneElement(step.icon, { className: "w-5 h-5" })}
                   </div>
                   
                   {/* Content */}
-                  <h3 className="font-outfit font-bold text-lg text-coal-black mb-2">
+                  <h3 className="font-outfit font-bold text-base text-coal-black mb-2 line-clamp-2">
                     {step.title}
                   </h3>
-                  <p className="font-dm-sans text-sm text-cool-gray mb-3">
+                  <p className="font-dm-sans text-xs text-cool-gray mb-3 line-clamp-2">
                     {step.description}
                   </p>
                   
                   {/* Metric */}
-                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg px-3 py-2">
-                    <span className="font-space-grotesk font-bold text-sm text-trust-blue">
+                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-md px-2 py-1.5">
+                    <span className="font-space-grotesk font-bold text-xs text-trust-blue">
                       {step.metric}
                     </span>
                   </div>

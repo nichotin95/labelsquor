@@ -24,7 +24,7 @@ const HowItWorksConsumer: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-b from-white to-light-gray/20">
+    <section id="how-it-works" className="py-16 sm:py-20 bg-gradient-to-b from-white to-light-gray/20 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -73,83 +73,98 @@ const HowItWorksConsumer: React.FC = () => {
           ))}
         </div>
 
-        {/* Visual Example */}
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <div className="grid lg:grid-cols-3 gap-6 items-center">
+        {/* Visual Example - Redesigned */}
+        <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 lg:p-12 border border-gray-200">
+          <h3 className="font-outfit font-bold text-xl text-coal-black text-center mb-8">
+            See it in action
+          </h3>
+          
+          <div className="flex flex-col lg:flex-row items-center justify-between max-w-5xl mx-auto gap-8">
             {/* Step 1 Visual */}
-            <div className="text-center">
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 mb-3">
-                <div className="w-32 h-32 mx-auto bg-white rounded-lg shadow-sm flex items-center justify-center">
-                  <div className="space-y-2">
-                    <div className="h-1 w-20 bg-gray-800 mx-auto"></div>
-                    <div className="h-1 w-16 bg-gray-800 mx-auto"></div>
-                    <div className="h-1 w-20 bg-gray-800 mx-auto"></div>
-                    <div className="h-1 w-12 bg-gray-800 mx-auto"></div>
-                    <div className="h-1 w-20 bg-gray-800 mx-auto"></div>
+            <div className="flex-1 text-center">
+              <div className="relative">
+                <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                  <div className="w-full h-40 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg flex flex-col items-center justify-center">
+                    {/* Barcode Visual */}
+                    <div className="space-y-1.5 mb-3">
+                      <div className="h-8 w-1 bg-gray-800 inline-block mx-0.5"></div>
+                      <div className="h-8 w-2 bg-gray-800 inline-block mx-0.5"></div>
+                      <div className="h-8 w-1 bg-gray-800 inline-block mx-0.5"></div>
+                      <div className="h-8 w-3 bg-gray-800 inline-block mx-0.5"></div>
+                      <div className="h-8 w-1 bg-gray-800 inline-block mx-0.5"></div>
+                      <div className="h-8 w-2 bg-gray-800 inline-block mx-0.5"></div>
+                      <div className="h-8 w-1 bg-gray-800 inline-block mx-0.5"></div>
+                    </div>
+                    <FaCamera className="w-6 h-6 text-trust-blue" />
                   </div>
                 </div>
-                <FaCamera className="w-8 h-8 text-trust-blue mx-auto mt-3" />
+                <span className="inline-block mt-3 font-dm-sans text-sm text-gray-600">Scan barcode</span>
+                
+                {/* Arrow for desktop */}
+                <div className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 text-trust-blue">
+                  <svg width="40" height="20" viewBox="0 0 40 20">
+                    <path d="M0 10 L30 10 M30 10 L25 5 M30 10 L25 15" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  </svg>
+                </div>
               </div>
-              <span className="font-dm-sans text-xs text-gray-500">Scan barcode</span>
-            </div>
-
-            {/* Arrow */}
-            <div className="hidden lg:flex justify-center">
-              <div className="text-gray-400 text-2xl">→</div>
             </div>
 
             {/* Step 2 Visual */}
-            <div className="text-center">
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 mb-3">
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="bg-white rounded-lg p-3 shadow-sm">
-                    <span className="text-xs font-dm-sans text-gray-600">Health</span>
-                    <div className="text-2xl font-space-grotesk font-bold text-red-600">24</div>
-                  </div>
-                  <div className="bg-white rounded-lg p-3 shadow-sm">
-                    <span className="text-xs font-dm-sans text-gray-600">Safety</span>
-                    <div className="text-2xl font-space-grotesk font-bold text-yellow-600">75</div>
-                  </div>
-                  <div className="bg-white rounded-lg p-3 shadow-sm">
-                    <span className="text-xs font-dm-sans text-gray-600">Sustainability</span>
-                    <div className="text-2xl font-space-grotesk font-bold text-orange-600">40</div>
-                  </div>
-                  <div className="bg-white rounded-lg p-3 shadow-sm">
-                    <span className="text-xs font-dm-sans text-gray-600">Verification</span>
-                    <div className="text-2xl font-space-grotesk font-bold text-green-600">88</div>
+            <div className="flex-1 text-center">
+              <div className="relative">
+                <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-red-50 rounded-lg p-3">
+                      <span className="text-xs font-dm-sans text-gray-600">Health</span>
+                      <div className="text-2xl font-space-grotesk font-bold text-red-600">24</div>
+                    </div>
+                    <div className="bg-yellow-50 rounded-lg p-3">
+                      <span className="text-xs font-dm-sans text-gray-600">Safety</span>
+                      <div className="text-2xl font-space-grotesk font-bold text-yellow-600">75</div>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-3">
+                      <span className="text-xs font-dm-sans text-gray-600">Sustain.</span>
+                      <div className="text-2xl font-space-grotesk font-bold text-orange-600">40</div>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-3">
+                      <span className="text-xs font-dm-sans text-gray-600">Verified</span>
+                      <div className="text-2xl font-space-grotesk font-bold text-green-600">88</div>
+                    </div>
                   </div>
                 </div>
+                <span className="inline-block mt-3 font-dm-sans text-sm text-gray-600">Instant Squors</span>
+                
+                {/* Arrow for desktop */}
+                <div className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 text-trust-blue">
+                  <svg width="40" height="20" viewBox="0 0 40 20">
+                    <path d="M0 10 L30 10 M30 10 L25 5 M30 10 L25 15" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  </svg>
+                </div>
               </div>
-              <span className="font-dm-sans text-xs text-gray-500">Instant Squors</span>
-            </div>
-
-            {/* Arrow */}
-            <div className="hidden lg:flex justify-center">
-              <div className="text-gray-400 text-2xl">→</div>
             </div>
 
             {/* Step 3 Visual */}
-            <div className="text-center">
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 mb-3">
-                <div className="bg-white rounded-lg p-4 shadow-sm text-left">
-                  <h4 className="font-outfit font-semibold text-sm text-coal-black mb-2">Why this Squor?</h4>
-                  <div className="space-y-1 text-xs">
-                    <div className="flex items-start">
-                      <span className="text-red-500 mr-1">•</span>
-                      <span className="font-dm-sans text-gray-600">High sugar content</span>
+            <div className="flex-1 text-center">
+              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-4">
+                  <h4 className="font-outfit font-semibold text-sm text-coal-black mb-3 text-left">Why this Squor?</h4>
+                  <div className="space-y-2 text-left">
+                    <div className="flex items-center">
+                      <span className="text-red-500 mr-2">✗</span>
+                      <span className="font-dm-sans text-xs text-gray-700">High sugar content</span>
                     </div>
-                    <div className="flex items-start">
-                      <span className="text-amber-500 mr-1">•</span>
-                      <span className="font-dm-sans text-gray-600">Contains palm oil</span>
+                    <div className="flex items-center">
+                      <span className="text-amber-500 mr-2">⚠</span>
+                      <span className="font-dm-sans text-xs text-gray-700">Contains palm oil</span>
                     </div>
-                    <div className="flex items-start">
-                      <span className="text-green-500 mr-1">•</span>
-                      <span className="font-dm-sans text-gray-600">FSSAI verified</span>
+                    <div className="flex items-center">
+                      <span className="text-green-500 mr-2">✓</span>
+                      <span className="font-dm-sans text-xs text-gray-700">FSSAI verified</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <span className="font-dm-sans text-xs text-gray-500">Evidence & insights</span>
+              <span className="inline-block mt-3 font-dm-sans text-sm text-gray-600">Evidence & insights</span>
             </div>
           </div>
         </div>
