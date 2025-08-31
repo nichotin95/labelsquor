@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import ModeSwitch from './components/ModeSwitch';
@@ -15,11 +15,6 @@ import Footer from './components/Footer';
 
 function App() {
   const [mode, setMode] = useState<'consumer' | 'retailer'>('consumer');
-
-  // Scroll to top when mode changes
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [mode]);
 
   return (
     <div className="min-h-screen bg-white">
