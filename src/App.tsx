@@ -4,6 +4,8 @@ import Hero from './components/Hero';
 import ModeSwitch from './components/ModeSwitch';
 import ForConsumers from './components/ForConsumers';
 import ForRetailers from './components/ForRetailers';
+import ForBrands from './components/ForBrands';
+import CaseStudies from './components/CaseStudies';
 import HowItWorks from './components/HowItWorks';
 import InteractiveDemo from './components/InteractiveDemo';
 import DemoSection from './components/DemoSection';
@@ -44,8 +46,8 @@ function App() {
         ) : (
           <div className="animate-fadeIn">
             <ForRetailers />
-            {/* Only show Features if it exists */}
-            {typeof Features !== 'undefined' && <Features mode={mode} />}
+            <ForBrands />
+            <CaseStudies />
             <DemoSection />
           </div>
         )}

@@ -1,99 +1,137 @@
 import React from 'react';
-import { FaRobot, FaSearch, FaChartBar, FaBuilding } from 'react-icons/fa';
+import { FaChartLine, FaShieldAlt, FaExclamationTriangle, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
 
 const ForRetailers: React.FC = () => {
-  const features = [
+  const benefits = [
     {
-      icon: <FaRobot className="text-3xl" />,
-      title: 'Automated Checks',
-      description: 'Stay compliant with FOPL, BIS, INCI, EU regulations and 50+ more. Automated monitoring across your entire catalog.',
-      details: ['FOPL compliance', 'BIS standards', 'INCI verification', 'EU regulations']
+      icon: <FaChartLine className="text-3xl" />,
+      title: 'Reduce Compliance Costs',
+      description: 'Automate label checks across 50+ global regulations.',
+      highlight: 'Up to 75% cost reduction vs manual audits',
+      stat: '75%',
+      statLabel: 'Cost Reduction',
+      color: 'from-trust-blue to-blue-500'
     },
     {
-      icon: <FaSearch className="text-3xl" />,
-      title: 'Label Coach',
-      description: 'Identify gaps and missing fields before products go live. Fix compliance issues proactively.',
-      details: ['Gap analysis', 'Missing field alerts', 'Compliance scoring', 'Fix recommendations']
+      icon: <FaShieldAlt className="text-3xl" />,
+      title: 'Increase Consumer Trust',
+      description: 'Transparent product scores build shopper confidence.',
+      highlight: '+23% conversion in pilots',
+      stat: '+23%',
+      statLabel: 'Conversion Lift',
+      color: 'from-pulse-green to-green-500'
     },
     {
-      icon: <FaChartBar className="text-3xl" />,
-      title: 'PDP Widgets',
-      description: 'Add trust badges to product pages. Boost shopper confidence and increase conversions.',
-      details: ['Trust badges', 'Conversion boost', 'Easy integration', 'Real-time updates']
+      icon: <FaExclamationTriangle className="text-3xl" />,
+      title: 'Prevent Costly Issues',
+      description: 'Proactive gap detection flags risks before market.',
+      highlight: '90% fewer incidents reported',
+      stat: '90%',
+      statLabel: 'Fewer Incidents',
+      color: 'from-gradient-purple to-purple-500'
     }
   ];
 
+  const regulations = [
+    { abbr: 'FSSAI', full: 'Food Safety Standards', region: 'India' },
+    { abbr: 'EU FOPL', full: 'Front-of-Pack Labeling', region: 'Europe' },
+    { abbr: 'US FDA', full: 'Food & Drug Admin', region: 'USA' },
+    { abbr: 'BIS', full: 'Bureau of Standards', region: 'India' },
+    { abbr: 'INCI', full: 'Ingredient Nomenclature', region: 'Global' },
+    { abbr: 'Organic', full: 'Organic Certification', region: 'Global' }
+  ];
+
   return (
-    <section id="retailers" className="py-16 sm:py-20 lg:py-24 bg-light-gray/30">
+    <section id="retailers" className="py-16 sm:py-20 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
-          <div className="inline-flex items-center bg-trust-blue/10 rounded-full px-4 py-2 mb-4">
+          <div className="inline-flex items-center bg-gradient-to-r from-trust-blue/10 to-gradient-purple/10 rounded-full px-4 py-2 mb-4">
             <span className="font-dm-sans text-sm font-semibold text-trust-blue">For Retailers & Brands</span>
           </div>
           <h2 className="font-outfit font-bold text-3xl sm:text-4xl lg:text-5xl text-coal-black mb-4">
-            Prove compliance. Build trust.
+            Why Retailers Choose Label<span className="text-trust-blue">Squor</span>
           </h2>
           <p className="font-dm-sans text-lg text-cool-gray max-w-3xl mx-auto">
-            Transform regulatory complexity into competitive advantage. 
-            Automate compliance across your entire product catalog.
+            Transform compliance from a cost center to a competitive advantage
           </p>
         </div>
 
-        {/* Feature Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {features.map((feature, index) => (
+        {/* Benefits Cards with Stats */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {benefits.map((benefit, index) => (
             <div 
               key={index}
-              className="bg-white rounded-2xl p-6 hover:shadow-xl transition-shadow duration-300"
+              className="group bg-white rounded-2xl border-2 border-gray-100 hover:border-trust-blue/30 p-8 hover:shadow-2xl transition-all duration-300"
             >
-              <div className="bg-gradient-to-br from-trust-blue to-gradient-purple w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-white">
-                {feature.icon}
+              {/* Icon and Stat */}
+              <div className="flex items-start justify-between mb-6">
+                <div className={`bg-gradient-to-br ${benefit.color} w-14 h-14 rounded-xl flex items-center justify-center text-white shadow-lg`}>
+                  {benefit.icon}
+                </div>
+                <div className="text-right">
+                  <div className="font-space-grotesk font-bold text-3xl text-coal-black">
+                    {benefit.stat}
+                  </div>
+                  <div className="font-dm-sans text-xs text-cool-gray">
+                    {benefit.statLabel}
+                  </div>
+                </div>
               </div>
+              
+              {/* Content */}
               <h3 className="font-outfit font-bold text-xl text-coal-black mb-3">
-                {feature.title}
+                {benefit.title}
               </h3>
               <p className="font-dm-sans text-cool-gray mb-4">
-                {feature.description}
+                {benefit.description}
               </p>
-              <ul className="space-y-2">
-                {feature.details.map((detail, idx) => (
-                  <li key={idx} className="flex items-start">
-                    <span className="text-trust-blue mr-2 mt-1">•</span>
-                    <span className="font-inter text-sm text-coal-black">{detail}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex items-center text-sm">
+                <FaCheckCircle className="text-success-green mr-2" />
+                <span className="font-inter text-coal-black font-medium">
+                  {benefit.highlight}
+                </span>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-          <div className="text-center">
-            <div className="font-space-grotesk font-bold text-3xl text-trust-blue">50+</div>
-            <div className="font-dm-sans text-sm text-cool-gray">Global Regulations</div>
-          </div>
-          <div className="text-center">
-            <div className="font-space-grotesk font-bold text-3xl text-trust-blue">500+</div>
-            <div className="font-dm-sans text-sm text-cool-gray">Brands Trust Us</div>
-          </div>
-          <div className="text-center">
-            <div className="font-space-grotesk font-bold text-3xl text-trust-blue">10M+</div>
-            <div className="font-dm-sans text-sm text-cool-gray">Products Analyzed</div>
-          </div>
-          <div className="text-center">
-            <div className="font-space-grotesk font-bold text-3xl text-trust-blue">99.9%</div>
-            <div className="font-dm-sans text-sm text-cool-gray">Accuracy Rate</div>
+        {/* Regulations Bar */}
+        <div className="bg-gradient-to-r from-light-gray to-gray-50 rounded-2xl p-8 mb-16">
+          <h3 className="font-outfit font-bold text-xl text-coal-black text-center mb-6">
+            Compliance Coverage Across Global Markets
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            {regulations.map((reg, index) => (
+              <div key={index} className="text-center group">
+                <div className="bg-white rounded-lg p-4 shadow-sm group-hover:shadow-lg transition-all duration-300">
+                  <div className="font-outfit font-bold text-trust-blue text-lg mb-1">
+                    {reg.abbr}
+                  </div>
+                  <div className="font-dm-sans text-xs text-cool-gray mb-1">
+                    {reg.full}
+                  </div>
+                  <div className="font-inter text-xs text-gray-500">
+                    {reg.region}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* CTA */}
         <div className="text-center">
-          <button className="inline-flex items-center bg-trust-blue text-white font-outfit font-semibold px-8 py-3 rounded-full hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl group">
-            <FaBuilding className="mr-2" />
-            Partner With Us
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="inline-flex items-center bg-trust-blue text-white font-outfit font-semibold px-8 py-4 rounded-full hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl group">
+              Book a Demo
+              <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button className="inline-flex items-center bg-white border-2 border-cool-gray text-coal-black font-outfit font-semibold px-8 py-4 rounded-full hover:border-trust-blue hover:text-trust-blue transition-all duration-300 group">
+              Start Free Trial
+              <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
       </div>
     </section>

@@ -20,27 +20,30 @@ const CallToAction: React.FC<CallToActionProps> = ({ mode }) => {
           <div className="relative z-10 px-8 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20 text-center">
             {/* Heading */}
             <h2 className="font-outfit font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-4">
-              Bring verified trust to every product page
+              {mode === 'consumer' 
+                ? 'Make Smarter Choices'
+                : 'Transform Your Compliance Advantage'
+              }
             </h2>
             
             {/* Subheading */}
             <p className="font-dm-sans text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-8">
               {mode === 'consumer' 
                 ? "Join thousands making smarter purchasing decisions with LabelSquor"
-                : "Transform your product pages with trust badges that convert"
+                : "Join 500+ retailers and brands who trust LabelSquor for automated compliance"
               }
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button className="bg-white text-trust-blue font-outfit font-semibold px-8 py-4 rounded-full hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center justify-center group">
-                {mode === 'consumer' ? 'Get Early Access' : 'Start Free Trial'}
+                {mode === 'consumer' ? 'Get Early Access' : 'Book a Demo'}
                 <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
               
               <button className="bg-transparent border-2 border-white text-white font-outfit font-semibold px-8 py-4 rounded-full hover:bg-white/10 transition-all duration-300 flex items-center justify-center group">
                 <FaBuilding className="mr-2" />
-                {mode === 'consumer' ? 'For Retailers' : 'Partner With Us'}
+                {mode === 'consumer' ? 'For Retailers' : 'Get in Touch'}
               </button>
             </div>
 

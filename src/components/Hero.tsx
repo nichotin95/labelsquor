@@ -28,14 +28,14 @@ const Hero: React.FC<HeroProps> = ({ mode }) => {
     ]
   } : {
     badge: "Trusted by 500+ retailers",
-    headline: "Compliance, simplified.",
-    subheader: "Transform regulatory complexity into competitive advantage. Automate compliance monitoring and build consumer trust.",
-    primaryCTA: "Partner With Us",
-    secondaryCTA: "See Demo",
+    headline: "Turn compliance into a competitive advantage.",
+    subheader: "Automated label checks for FOPL, BIS, INCI, EU, and more — save costs, prevent recalls, and boost consumer trust.",
+    primaryCTA: "Book a Demo",
+    secondaryCTA: "Start Free Trial",
     features: [
       { icon: "🌐", text: "50+ global regulations covered" },
-      { icon: "🔍", text: "Proactive gap identification" },
-      { icon: "📈", text: "Trust widgets that boost conversions" }
+      { icon: "🔍", text: "Proactive gap detection" },
+      { icon: "📈", text: "Trust widgets that increase conversions" }
     ]
   };
 
