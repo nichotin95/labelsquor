@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaArrowRight, FaPlay, FaBuilding, FaCheckCircle, FaShieldAlt, FaLeaf } from 'react-icons/fa';
 import EmailCapture from './EmailCapture';
-import ImagePlaceholder from './ImagePlaceholder';
 import productsData from '../data/products.json';
 import { getSquorColor, getSquorBgColor } from '../utils/squorHelpers';
 
@@ -11,9 +10,12 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ mode }) => {
   // Get product data from products.json for Hero display
-  // Using a low-scoring product to demonstrate what LabelSquor reveals
-  const HERO_PRODUCT_INDEX = 6; // Parle-G Glucose Biscuits (low-scoring product - Health: 11)
-  const heroProduct = productsData[HERO_PRODUCT_INDEX];
+  // Different products for different audiences
+  const CONSUMER_PRODUCT_INDEX = 6; // Parle-G (shows health concerns)
+  const RETAILER_PRODUCT_INDEX = 0; // Maggi Noodles (shows compliance aspects)
+  const heroProduct = mode === 'consumer' 
+    ? productsData[CONSUMER_PRODUCT_INDEX]
+    : productsData[RETAILER_PRODUCT_INDEX];
   
   const content = mode === 'consumer' ? {
     badge: "Trusted by 100K+ consumers",
@@ -64,10 +66,11 @@ const Hero: React.FC<HeroProps> = ({ mode }) => {
                   <span>, explained.</span>
                 </>
               ) : (
-                <>
-                  <span className="text-trust-blue">Compliance</span>
-                  <span>, simplified.</span>
-                </>
+                content.headline.split(' ').map((word, index) => (
+                  <span key={index}>
+                    {index === 1 ? <span className="text-trust-blue">{word}</span> : word}{' '}
+                  </span>
+                ))
               )}
             </h1>
             
@@ -96,7 +99,7 @@ const Hero: React.FC<HeroProps> = ({ mode }) => {
           {/* Visual Mockup */}
           <div className="mt-10 lg:mt-0">
             <div className="relative">
-              {/* Product Card with Complete Analysis */}
+              {/* Product Card - Different views for Consumer vs Retailer */}
               <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-md mx-auto">
                 {/* Product Header */}
                 <div className="flex items-center gap-4 mb-4">
@@ -114,97 +117,168 @@ const Hero: React.FC<HeroProps> = ({ mode }) => {
                   </div>
                 </div>
                 
-                {/* All 4 Squors Grid */}
-                <div className="grid grid-cols-2 gap-3 mb-4">
-                  {/* Health Squor */}
-                  <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.health)}`}>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-dm-sans text-xs text-gray-600">Health</span>
-                      <FaCheckCircle className={`text-xs ${getSquorColor(heroProduct.scores.health)}`} />
-                    </div>
-                    <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.health)}`}>
-                      {heroProduct.scores.health}
-                    </div>
-                  </div>
-                  
-                  {/* Safety Squor */}
-                  <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.safety)}`}>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-dm-sans text-xs text-gray-600">Safety</span>
-                      <FaShieldAlt className={`text-xs ${getSquorColor(heroProduct.scores.safety)}`} />
-                    </div>
-                    <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.safety)}`}>
-                      {heroProduct.scores.safety}
-                    </div>
-                  </div>
-                  
-                  {/* Sustainability Squor */}
-                  <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.sustainability)}`}>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-dm-sans text-xs text-gray-600">Sustainability</span>
-                      <FaLeaf className={`text-xs ${getSquorColor(heroProduct.scores.sustainability)}`} />
-                    </div>
-                    <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.sustainability)}`}>
-                      {heroProduct.scores.sustainability}
-                    </div>
-                  </div>
-                  
-                  {/* Verification Squor */}
-                  <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.verification)}`}>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-dm-sans text-xs text-gray-600">Verification</span>
-                      <FaCheckCircle className={`text-xs ${getSquorColor(heroProduct.scores.verification)}`} />
-                    </div>
-                    <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.verification)}`}>
-                      {heroProduct.scores.verification}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Key Insights from Why Card and Flags */}
-                <div className="bg-gradient-to-br from-light-gray to-gray-50 rounded-lg p-3">
-                  <h4 className="font-outfit font-semibold text-xs text-coal-black mb-2">Key Insights</h4>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    {heroProduct.why_card.slice(0, 2).map((insight, index) => {
-                      // Determine if insight is positive or negative
-                      const isNegative = insight.toLowerCase().includes('high') && 
-                                        (insight.toLowerCase().includes('sugar') || 
-                                         insight.toLowerCase().includes('sodium') || 
-                                         insight.toLowerCase().includes('saturated') ||
-                                         insight.toLowerCase().includes('refined'));
-                      const isPositive = insight.toLowerCase().includes('fiber') || 
-                                        insight.toLowerCase().includes('protein');
+                {mode === 'consumer' ? (
+                  <>
+                    {/* Consumer View: Health Scores */}
+                    <div className="grid grid-cols-2 gap-3 mb-4">
+                      {/* Health Squor */}
+                      <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.health)}`}>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-dm-sans text-xs text-gray-600">Health</span>
+                          <FaCheckCircle className={`text-xs ${getSquorColor(heroProduct.scores.health)}`} />
+                        </div>
+                        <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.health)}`}>
+                          {heroProduct.scores.health}
+                        </div>
+                      </div>
                       
-                      return (
-                        <div key={index} className="flex items-center">
-                          <span className={`mr-1 ${isNegative ? 'text-red-600' : isPositive ? 'text-green-600' : 'text-amber-600'}`}>
-                            {isNegative ? '✗' : isPositive ? '✓' : '•'}
-                          </span>
-                          <span className="font-dm-sans text-gray-600 truncate">{insight}</span>
+                      {/* Safety Squor */}
+                      <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.safety)}`}>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-dm-sans text-xs text-gray-600">Safety</span>
+                          <FaShieldAlt className={`text-xs ${getSquorColor(heroProduct.scores.safety)}`} />
                         </div>
-                      );
-                    })}
-                    {heroProduct.flags.slice(0, 2).map((flag, index) => {
-                      const isPositive = flag.includes('FSSAI') || flag.includes('verified') || flag.includes('Organic');
-                      return (
-                        <div key={index + 2} className="flex items-center">
-                          <span className={`mr-1 ${isPositive ? 'text-green-600' : 'text-amber-600'}`}>
-                            {isPositive ? '✓' : '•'}
-                          </span>
-                          <span className="font-dm-sans text-gray-600 truncate">{flag}</span>
+                        <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.safety)}`}>
+                          {heroProduct.scores.safety}
                         </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                      </div>
+                      
+                      {/* Sustainability Squor */}
+                      <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.sustainability)}`}>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-dm-sans text-xs text-gray-600">Sustainability</span>
+                          <FaLeaf className={`text-xs ${getSquorColor(heroProduct.scores.sustainability)}`} />
+                        </div>
+                        <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.sustainability)}`}>
+                          {heroProduct.scores.sustainability}
+                        </div>
+                      </div>
+                      
+                      {/* Verification Squor */}
+                      <div className={`border-2 rounded-xl p-3 ${getSquorBgColor(heroProduct.scores.verification)}`}>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-dm-sans text-xs text-gray-600">Verification</span>
+                          <FaCheckCircle className={`text-xs ${getSquorColor(heroProduct.scores.verification)}`} />
+                        </div>
+                        <div className={`font-space-grotesk font-bold text-2xl ${getSquorColor(heroProduct.scores.verification)}`}>
+                          {heroProduct.scores.verification}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Consumer Insights */}
+                    <div className="bg-gradient-to-br from-light-gray to-gray-50 rounded-lg p-3">
+                      <h4 className="font-outfit font-semibold text-xs text-coal-black mb-2">Key Insights</h4>
+                      <div className="grid grid-cols-2 gap-2 text-xs">
+                        {heroProduct.why_card.slice(0, 2).map((insight, index) => {
+                          const isNegative = insight.toLowerCase().includes('high') && 
+                                            (insight.toLowerCase().includes('sugar') || 
+                                             insight.toLowerCase().includes('sodium') || 
+                                             insight.toLowerCase().includes('saturated') ||
+                                             insight.toLowerCase().includes('refined'));
+                          const isPositive = insight.toLowerCase().includes('fiber') || 
+                                            insight.toLowerCase().includes('protein');
+                          
+                          return (
+                            <div key={index} className="flex items-center">
+                              <span className={`mr-1 ${isNegative ? 'text-red-600' : isPositive ? 'text-green-600' : 'text-amber-600'}`}>
+                                {isNegative ? '✗' : isPositive ? '✓' : '•'}
+                              </span>
+                              <span className="font-dm-sans text-gray-600 truncate">{insight}</span>
+                            </div>
+                          );
+                        })}
+                        {heroProduct.flags.slice(0, 2).map((flag, index) => {
+                          const isPositive = flag.includes('FSSAI') || flag.includes('verified') || flag.includes('Organic');
+                          return (
+                            <div key={index + 2} className="flex items-center">
+                              <span className={`mr-1 ${isPositive ? 'text-green-600' : 'text-amber-600'}`}>
+                                {isPositive ? '✓' : '•'}
+                              </span>
+                              <span className="font-dm-sans text-gray-600 truncate">{flag}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Retailer View: Compliance Dashboard */}
+                    <div className="space-y-3 mb-4">
+                      {/* Compliance Status */}
+                      <div className="bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-lg p-3">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="font-outfit font-semibold text-sm text-coal-black">Compliance Status</span>
+                          <span className="text-xs font-dm-sans bg-red-100 text-red-700 px-2 py-1 rounded-full">3 Issues</span>
+                        </div>
+                        <div className="space-y-1.5">
+                          <div className="flex items-center text-xs">
+                            <span className="text-red-500 mr-2">✗</span>
+                            <span className="font-dm-sans text-gray-700">FOPL compliance: Missing warning labels</span>
+                          </div>
+                          <div className="flex items-center text-xs">
+                            <span className="text-amber-500 mr-2">⚠</span>
+                            <span className="font-dm-sans text-gray-700">High sodium exceeds recommended limits</span>
+                          </div>
+                          <div className="flex items-center text-xs">
+                            <span className="text-green-500 mr-2">✓</span>
+                            <span className="font-dm-sans text-gray-700">FSSAI license valid</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Regulatory Coverage */}
+                      <div className="grid grid-cols-2 gap-2">
+                        <div className="bg-white border border-gray-200 rounded-lg p-2">
+                          <div className="text-xs font-dm-sans text-gray-600">BIS Standards</div>
+                          <div className="flex items-center mt-1">
+                            <span className="text-amber-500 mr-1">⚠</span>
+                            <span className="font-outfit font-bold text-sm text-coal-black">Partial</span>
+                          </div>
+                        </div>
+                        <div className="bg-white border border-gray-200 rounded-lg p-2">
+                          <div className="text-xs font-dm-sans text-gray-600">INCI Labels</div>
+                          <div className="flex items-center mt-1">
+                            <span className="text-green-500 mr-1">✓</span>
+                            <span className="font-outfit font-bold text-sm text-coal-black">Complete</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Risk Analysis */}
+                    <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg p-3">
+                      <h4 className="font-outfit font-semibold text-xs text-coal-black mb-2">Risk Analysis</h4>
+                      <div className="space-y-1.5 text-xs">
+                        <div className="flex items-center justify-between">
+                          <span className="font-dm-sans text-gray-700">Recall Risk</span>
+                          <span className="font-space-grotesk font-bold text-red-600">High</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="font-dm-sans text-gray-700">Consumer Trust Impact</span>
+                          <span className="font-space-grotesk font-bold text-amber-600">Medium</span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="font-dm-sans text-gray-700">Estimated Fix Time</span>
+                          <span className="font-space-grotesk font-bold text-coal-black">2 days</span>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Floating badges */}
               <div className="absolute -top-4 -right-4 bg-white rounded-full px-4 py-2 shadow-lg animate-float">
-                <span className="font-dm-sans text-xs font-semibold text-success-green">Verified</span>
+                <span className="font-dm-sans text-xs font-semibold text-success-green">
+                  {mode === 'consumer' ? 'Verified' : 'Automated'}
+                </span>
               </div>
               <div className="absolute -bottom-4 -left-4 bg-white rounded-full px-4 py-2 shadow-lg animate-float animation-delay-200">
-                <span className="font-dm-sans text-xs font-semibold text-trust-blue">Evidence-based</span>
+                <span className="font-dm-sans text-xs font-semibold text-trust-blue">
+                  {mode === 'consumer' ? 'Evidence-based' : 'ROI in 3 days'}
+                </span>
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ This directory contains product images for the LabelSquor demo.
 - amul_curd.jpg - Amul Plain Curd (Dahi)
 - motherdairy_paneer.jpg - Mother Dairy Paneer
 - parle_g.jpg - Parle-G Glucose Biscuits
-- britannia_bread.jpg - Britannia Whole-Wheat Bread
+- re.jpg - Britannia Whole-Wheat Bread
 
 ## Image Guidelines:
 - Size: 300x400px minimum
