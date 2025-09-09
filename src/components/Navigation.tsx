@@ -26,6 +26,11 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
 
   const navLinks = mode === 'consumer' ? [
     { 
+      name: 'Demo', 
+      href: '#interactive-demo',
+      onClick: () => handleNavClick('#interactive-demo')
+    },
+    { 
       name: 'How It Works', 
       href: '#how-it-works',
       onClick: () => handleNavClick('#how-it-works')
@@ -34,11 +39,6 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
       name: 'Features', 
       href: '#consumers',
       onClick: () => handleNavClick('#consumers')
-    },
-    { 
-      name: 'Demo', 
-      href: '#interactive-demo',
-      onClick: () => handleNavClick('#interactive-demo')
     },
     { 
       name: 'Trust & Safety', 
@@ -50,7 +50,7 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
       href: '#retailers',
       onClick: () => {
         onModeChange('retailer');
-        setTimeout(() => handleNavClick('#retailers'), 100);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     },
   ] : [
@@ -79,7 +79,7 @@ const Navigation: React.FC<NavigationProps> = ({ mode, onModeChange }) => {
       href: '#consumers',
       onClick: () => {
         onModeChange('consumer');
-        setTimeout(() => handleNavClick('#consumers'), 100);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     },
   ];

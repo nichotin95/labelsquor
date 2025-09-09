@@ -24,13 +24,13 @@ const InteractiveDemo: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-12 lg:mb-16">
           <div className="inline-flex items-center bg-trust-blue/10 rounded-full px-4 py-2 mb-4">
-            <span className="font-dm-sans text-sm font-semibold text-trust-blue">Live Demo</span>
+            <span className="font-dm-sans text-sm font-semibold text-trust-blue">Try It Now</span>
           </div>
           <h2 className="font-outfit font-bold text-3xl sm:text-4xl lg:text-5xl text-coal-black mb-4">
-            Experience Label<span className="text-trust-blue">Squor</span>
+            See Label<span className="text-trust-blue">Squor</span> in Action
           </h2>
           <p className="font-dm-sans text-lg text-cool-gray max-w-3xl mx-auto">
-            Real products from Indian markets with actual Health, Safety, Sustainability & Verification Squors
+            Explore real product analysis on popular items from your favorite brands
           </p>
         </div>
 

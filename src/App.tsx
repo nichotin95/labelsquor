@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
-import ModeSwitch from './components/ModeSwitch';
 
 // Consumer-specific components
 import HowItWorksConsumer from './components/HowItWorksConsumer';
@@ -28,20 +27,17 @@ function App() {
       <Navigation mode={mode} onModeChange={setMode} />
       <Hero mode={mode} />
       
-      {/* Mode Switcher */}
-      <ModeSwitch mode={mode} onModeChange={setMode} />
-      
       {/* Completely separate content for each mode */}
       {mode === 'consumer' ? (
         // Consumer Journey
         <div className="animate-fadeIn">
+          <InteractiveDemo />
           <HowItWorksConsumer />
           <ForConsumers />
-          <InteractiveDemo />
           <TrustSection />
           <CallToActionConsumer />
-        </div>
-      ) : (
+              </div>
+            ) : (
         // Retailer/Brand Journey
         <div className="animate-fadeIn">
           <HowItWorksRetailer />
